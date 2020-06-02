@@ -33,29 +33,30 @@ public:
     {
         if (FriendListItem->objectName().isEmpty())
             FriendListItem->setObjectName(QStringLiteral("FriendListItem"));
-        FriendListItem->resize(250, 60);
+        FriendListItem->resize(250, 58);
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(FriendListItem->sizePolicy().hasHeightForWidth());
         FriendListItem->setSizePolicy(sizePolicy);
-        FriendListItem->setMinimumSize(QSize(250, 60));
-        FriendListItem->setMaximumSize(QSize(250, 60));
+        FriendListItem->setMinimumSize(QSize(230, 58));
+        FriendListItem->setMaximumSize(QSize(250, 58));
         horizontalLayout = new QHBoxLayout(FriendListItem);
         horizontalLayout->setSpacing(0);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout->setContentsMargins(5, 0, 5, 0);
         widget = new QWidget(FriendListItem);
         widget->setObjectName(QStringLiteral("widget"));
         horizontalLayout_2 = new QHBoxLayout(widget);
         horizontalLayout_2->setSpacing(10);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
         lbHeadIcon = new QLabel(widget);
         lbHeadIcon->setObjectName(QStringLiteral("lbHeadIcon"));
         sizePolicy.setHeightForWidth(lbHeadIcon->sizePolicy().hasHeightForWidth());
         lbHeadIcon->setSizePolicy(sizePolicy);
-        lbHeadIcon->setMinimumSize(QSize(35, 35));
-        lbHeadIcon->setMaximumSize(QSize(35, 35));
+        lbHeadIcon->setMinimumSize(QSize(40, 40));
+        lbHeadIcon->setMaximumSize(QSize(40, 40));
 
         horizontalLayout_2->addWidget(lbHeadIcon);
 

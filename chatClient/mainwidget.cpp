@@ -17,6 +17,7 @@ mainWidget::mainWidget(QWidget *parent) :
 
     setWindowFlag(Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground);
+
     ui->widget_12->setStyleSheet("QWidget{background-color:rgb(245,245,245);border-radius:4px;}");
 
     ui->widget->setStyleSheet("QWidget{"
@@ -26,7 +27,7 @@ mainWidget::mainWidget(QWidget *parent) :
                               "}");
     ui->scroAreaLeft->setStyleSheet("QScrollArea{"
                                     "border-radius:0px;"
-                                    "border-width:1px;"
+                                    "border-top-width:1px;"
                                     "border-color:rgb(231,231,231);"
                                     "border-style:solid;"
                                     "}");
@@ -48,23 +49,27 @@ mainWidget::mainWidget(QWidget *parent) :
                                  "}");
     ui->widget_10->setStyleSheet("QWidget{"
                                  "border:0px;"
-                                 "background-color:rgb(248,248,248);"
+                                 "background-color:white;"
                                  "}");
     ui->widget_9->setStyleSheet("QWidget{"
-                                "background-color:rgb(248,248,248);"
+                                "background-color:white;"
                                 "border-width:1px;"
+                                "border-top-width:0px;"
+                                "border-radius:0px;"
+                                "border-bottom-right-radius:4px;"
                                 "border-color:rgb(231,231,231);"
                                 "border-style:solid;"
                                 "}");
     ui->widget_11->setStyleSheet("QWidget{border:0px;"
-                                 "background-color:rgb(248,248,248);"
+                                 "background-color:white;"
                                  "}");
     ui->tedtInputArea->setStyleSheet("QPlainTextEdit{border:none;"
-                                     "background-color:rgb(248,248,248);"
+                                     "background-color:white;"
                                      "}");
     ui->btnSend->setStyleSheet("QPushButton{border-width:1px;"
                                "border-color:rgb(231,231,231);"
                                "border-style:solid;"
+                               "border-radius:0px;"
                                "}");
 
     ui->btnUsrMsg->setIcon(QIcon(":/icons/headIcon.png"));
@@ -130,6 +135,12 @@ mainWidget::mainWidget(QWidget *parent) :
     //通讯录页面
     QScrollArea *scroAreaLeftAddrList = new QScrollArea(ui->widget_5);
     scroAreaLeftAddrList->setSizePolicy(QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding));
+    scroAreaLeftAddrList->setStyleSheet("QScrollArea{"
+                                    "border-radius:0px;"
+                                    "border-top-width:1px;"
+                                    "border-color:rgb(231,231,231);"
+                                    "border-style:solid;"
+                                    "}");
 //    scroAreaLeftAddrList->setWidgetResizable(true);
     scroAreaLeftAddrList->resize(ui->widget_5->size());
     QVBoxLayout *addressListLayout = new QVBoxLayout;
@@ -142,6 +153,8 @@ mainWidget::mainWidget(QWidget *parent) :
     //scroAreaLeftAddrList->show();
 
         FriendListItem *newFriend = new FriendListItem;
+        newFriend->setText("新的朋友");
+        newFriend->setPixmap(QPixmap(":/icons/newFriend.png"));
         addressListLayout->addWidget(newFriend);
         newFriend->show();
 
@@ -159,9 +172,11 @@ mainWidget::mainWidget(QWidget *parent) :
     QWidget *rightWidget = new QWidget;
     rightWidget->setLayout(rightLayout);
     ui->scroAreaRight->setWidget(rightWidget);
-//    ui->scroAreaRight->setWidgetResizable(true);
+
     connect(ui->btnSend, &QPushButton::clicked, [=](){
-        otherSideMsg *otherMsg = new otherSideMsg;
+        otherSideMsg *otherMsg = new otherSideMsg(rightWidget);
+        otherMsg->setText(ui->tedtInputArea->toPlainText());
+        ui->tedtInputArea->clear();
         rightLayout->addWidget(otherMsg);
         otherMsg->show();
 

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>250</width>
-    <height>60</height>
+    <height>58</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -18,14 +18,14 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>250</width>
-    <height>60</height>
+    <width>230</width>
+    <height>58</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>250</width>
-    <height>60</height>
+    <height>58</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -36,13 +36,13 @@
     <number>0</number>
    </property>
    <property name="leftMargin">
-    <number>0</number>
+    <number>5</number>
    </property>
    <property name="topMargin">
     <number>0</number>
    </property>
    <property name="rightMargin">
-    <number>0</number>
+    <number>5</number>
    </property>
    <property name="bottomMargin">
     <number>0</number>
@@ -52,6 +52,18 @@
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <property name="spacing">
        <number>10</number>
+      </property>
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
       </property>
       <item>
        <widget class="QLabel" name="lbHeadIcon">
@@ -63,14 +75,14 @@
         </property>
         <property name="minimumSize">
          <size>
-          <width>35</width>
-          <height>35</height>
+          <width>40</width>
+          <height>40</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>35</width>
-          <height>35</height>
+          <width>40</width>
+          <height>40</height>
          </size>
         </property>
         <property name="text">

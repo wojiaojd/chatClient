@@ -23,5 +23,6 @@
         <file>icons/search.png</file>
         <file>icons/tinyProgram.png</file>
         <file>icons/top.png</file>
+        <file>icons/newFriend.png</file>
     </qresource>
 </RCC>

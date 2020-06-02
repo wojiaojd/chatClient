@@ -14,6 +14,8 @@ class FriendListItem : public QWidget
 public:
     explicit FriendListItem(QWidget *parent = nullptr);
     ~FriendListItem();
+    void setText(const QString &userName);
+    void setPixmap(const QPixmap &headIcon);
 
 private:
     Ui::FriendListItem *ui;

@@ -40,15 +40,16 @@ public:
     {
         if (otherSideMsg->objectName().isEmpty())
             otherSideMsg->setObjectName(QStringLiteral("otherSideMsg"));
-        otherSideMsg->resize(439, 73);
+        otherSideMsg->resize(439, 57);
         QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(otherSideMsg->sizePolicy().hasHeightForWidth());
         otherSideMsg->setSizePolicy(sizePolicy);
         horizontalLayout = new QHBoxLayout(otherSideMsg);
+        horizontalLayout->setSpacing(0);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        horizontalLayout->setContentsMargins(-1, 0, -1, 0);
+        horizontalLayout->setContentsMargins(-1, 3, -1, 0);
         wdgLeft = new QWidget(otherSideMsg);
         wdgLeft->setObjectName(QStringLiteral("wdgLeft"));
         QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Minimum);
@@ -58,6 +59,7 @@ public:
         wdgLeft->setSizePolicy(sizePolicy1);
         verticalLayout = new QVBoxLayout(wdgLeft);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setContentsMargins(-1, 0, -1, -1);
         btnHeadIcon = new QPushButton(wdgLeft);
         btnHeadIcon->setObjectName(QStringLiteral("btnHeadIcon"));
         QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Fixed);
@@ -70,7 +72,7 @@ public:
 
         verticalLayout->addWidget(btnHeadIcon);
 
-        verticalSpacer = new QSpacerItem(20, 10, QSizePolicy::Minimum, QSizePolicy::Minimum);
+        verticalSpacer = new QSpacerItem(20, 3, QSizePolicy::Minimum, QSizePolicy::Minimum);
 
         verticalLayout->addItem(verticalSpacer);
 
@@ -86,6 +88,7 @@ public:
         wgtRight->setSizePolicy(sizePolicy3);
         verticalLayout_2 = new QVBoxLayout(wgtRight);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        verticalLayout_2->setContentsMargins(-1, 0, -1, 0);
         lbUserName = new QLabel(wgtRight);
         lbUserName->setObjectName(QStringLiteral("lbUserName"));
         QSizePolicy sizePolicy4(QSizePolicy::Preferred, QSizePolicy::Fixed);
@@ -124,7 +127,7 @@ public:
     void retranslateUi(QWidget *otherSideMsg)
     {
         otherSideMsg->setWindowTitle(QApplication::translate("otherSideMsg", "Form", Q_NULLPTR));
-        btnHeadIcon->setText(QApplication::translate("otherSideMsg", "PushButton", Q_NULLPTR));
+        btnHeadIcon->setText(QString());
         lbUserName->setText(QApplication::translate("otherSideMsg", "UserName", Q_NULLPTR));
     } // retranslateUi
 
