@@ -2,6 +2,9 @@
 #define CHATLISTITEM_H
 
 #include <QWidget>
+#include <QMouseEvent>
+#include <QScrollArea>
+#include <QVBoxLayout>
 
 namespace Ui {
 class ChatListItem;
@@ -14,9 +17,17 @@ class ChatListItem : public QWidget
 public:
     explicit ChatListItem(QWidget *parent = nullptr);
     ~ChatListItem();
+    bool eventFilter(QObject *watched, QEvent *event);
+    int getId();
+    void msgFormResize();
+    QScrollArea *scroMsgList;
+    QVBoxLayout *msgListLayout;
+    QWidget *wgtMsgList;
 
 private:
     Ui::ChatListItem *ui;
+
+    int id;
 };
 
 #endif // CHATLISTITEM_H

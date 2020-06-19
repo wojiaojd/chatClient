@@ -1,27 +1,29 @@
 #include "othersidemsg.h"
 #include "ui_othersidemsg.h"
 
-otherSideMsg::otherSideMsg(QWidget *parent) :
+OtherSideMsg::OtherSideMsg(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::otherSideMsg)
 {
     ui->setupUi(this);
     this->contentLayout = new QHBoxLayout(ui->wgtContent);
     this->contentLayout->setMargin(0);
+    ui->wgtContent->setLayout(this->contentLayout);
     ui->btnHeadIcon->setIcon(QIcon(":/icons/headIcon.png"));
     ui->btnHeadIcon->setIconSize(ui->btnHeadIcon->size());
     ui->lbUserName->setText("吴同学");
 
 }
 
-otherSideMsg::~otherSideMsg()
+OtherSideMsg::~OtherSideMsg()
 {
     delete ui;
 }
 
-void otherSideMsg::setText(const QString &msg)
+void OtherSideMsg::setText(const QString &msg)
 {
-    QLabel *textMsg = new QLabel(this);
+
+    textMsg = new QLabel(this);
     textMsg->setStyleSheet("QLabel{"
                            "background-color:white;"
                            "border-radius:4px;"
@@ -35,9 +37,19 @@ void otherSideMsg::setText(const QString &msg)
     textMsg->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Expanding);
     this->contentLayout->addWidget(textMsg);
     this->contentLayout->addStretch();
+    textMsg->installEventFilter(this);
 }
 
-void otherSideMsg::setUserName(const QString &userName)
+void OtherSideMsg::setUserName(const QString &userName)
 {
     ui->lbUserName->setText(userName);
+}
+
+bool OtherSideMsg::eventFilter(QObject *watched, QEvent *event)
+{
+    if(watched == this->textMsg && event->type() == QEvent::MouseButtonPress)
+    {
+
+    }
+    return QWidget::eventFilter(watched, event);
 }

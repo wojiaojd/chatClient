@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QFormLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -21,6 +22,7 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollArea>
 #include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -30,7 +32,7 @@ QT_BEGIN_NAMESPACE
 class Ui_mainWidget
 {
 public:
-    QVBoxLayout *verticalLayout_8;
+    QHBoxLayout *horizontalLayout_9;
     QWidget *widget_12;
     QHBoxLayout *horizontalLayout_2;
     QWidget *widget;
@@ -57,7 +59,7 @@ public:
     QScrollArea *scroAreaLeft;
     QWidget *scrollAreaWidgetContents;
     QWidget *widget_3;
-    QVBoxLayout *verticalLayout_5;
+    QVBoxLayout *verticalLayout_3;
     QWidget *widget_6;
     QHBoxLayout *horizontalLayout_3;
     QSpacerItem *horizontalSpacer;
@@ -65,16 +67,26 @@ public:
     QPushButton *btnMinSize;
     QPushButton *btnMaxSize;
     QPushButton *btnClose;
+    QStackedWidget *stackedWidget;
+    QWidget *page_4;
+    QHBoxLayout *horizontalLayout_12;
+    QSpacerItem *horizontalSpacer_10;
+    QLabel *lbIcon;
+    QSpacerItem *horizontalSpacer_11;
+    QWidget *page;
+    QVBoxLayout *verticalLayout_7;
+    QWidget *widget_13;
+    QVBoxLayout *verticalLayout_5;
     QWidget *widget_7;
     QHBoxLayout *horizontalLayout_4;
     QSpacerItem *horizontalSpacer_3;
     QLabel *label;
     QSpacerItem *horizontalSpacer_2;
     QPushButton *btnChatMsg;
-    QWidget *widget_8;
+    QStackedWidget *stackWgtMsgList;
+    QWidget *msgPage;
     QVBoxLayout *verticalLayout_4;
-    QScrollArea *scroAreaRight;
-    QWidget *scrollAreaWidgetContents_2;
+    QWidget *page_5;
     QWidget *widget_9;
     QVBoxLayout *verticalLayout_6;
     QWidget *widget_10;
@@ -89,21 +101,61 @@ public:
     QHBoxLayout *horizontalLayout_6;
     QSpacerItem *horizontalSpacer_5;
     QPushButton *btnSend;
+    QWidget *page_2;
+    QVBoxLayout *verticalLayout_8;
+    QWidget *widget_14;
+    QHBoxLayout *horizontalLayout_7;
+    QLabel *label_2;
+    QSpacerItem *horizontalSpacer_7;
+    QWidget *widget_15;
+    QHBoxLayout *horizontalLayout_8;
+    QSpacerItem *horizontalSpacer_8;
+    QLineEdit *ledtNewFriend;
+    QPushButton *btnSearchFriend;
+    QSpacerItem *horizontalSpacer_9;
+    QScrollArea *scrollArea;
+    QWidget *scrollAreaWidgetContents_3;
+    QWidget *page_3;
+    QVBoxLayout *verticalLayout_11;
+    QWidget *widget_16;
+    QVBoxLayout *verticalLayout_10;
+    QSpacerItem *verticalSpacer_2;
+    QWidget *widget_17;
+    QHBoxLayout *horizontalLayout_10;
+    QWidget *widget_20;
+    QVBoxLayout *verticalLayout_9;
+    QLabel *lbUserName;
+    QLabel *lbSaySth;
+    QLabel *lbHeadIcon;
+    QWidget *widget_18;
+    QFormLayout *formLayout;
+    QLabel *lbRemark;
+    QLabel *lbRemarkContent;
+    QLabel *lbRegion;
+    QLabel *lbRegionContent;
+    QLabel *lbId;
+    QLabel *lbIdContent;
+    QLabel *lbFrom;
+    QLabel *lbFromContent;
+    QWidget *widget_19;
+    QHBoxLayout *horizontalLayout_11;
+    QPushButton *btnSendMsg;
+    QSpacerItem *verticalSpacer_3;
 
     void setupUi(QWidget *mainWidget)
     {
         if (mainWidget->objectName().isEmpty())
             mainWidget->setObjectName(QStringLiteral("mainWidget"));
-        mainWidget->resize(722, 570);
+        mainWidget->resize(719, 500);
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(mainWidget->sizePolicy().hasHeightForWidth());
         mainWidget->setSizePolicy(sizePolicy);
-        verticalLayout_8 = new QVBoxLayout(mainWidget);
-        verticalLayout_8->setSpacing(0);
-        verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
-        verticalLayout_8->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout_9 = new QHBoxLayout(mainWidget);
+        horizontalLayout_9->setSpacing(0);
+        horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
+        horizontalLayout_9->setContentsMargins(0, 0, 0, 0);
         widget_12 = new QWidget(mainWidget);
         widget_12->setObjectName(QStringLiteral("widget_12"));
         horizontalLayout_2 = new QHBoxLayout(widget_12);
@@ -126,6 +178,7 @@ public:
         btnUsrMsg->setObjectName(QStringLiteral("btnUsrMsg"));
         btnUsrMsg->setMinimumSize(QSize(40, 40));
         btnUsrMsg->setMaximumSize(QSize(40, 40));
+        btnUsrMsg->setCursor(QCursor(Qt::PointingHandCursor));
 
         verticalLayout->addWidget(btnUsrMsg);
 
@@ -133,6 +186,7 @@ public:
         btnChatWidget->setObjectName(QStringLiteral("btnChatWidget"));
         btnChatWidget->setMinimumSize(QSize(40, 40));
         btnChatWidget->setMaximumSize(QSize(40, 40));
+        btnChatWidget->setCursor(QCursor(Qt::PointingHandCursor));
 
         verticalLayout->addWidget(btnChatWidget);
 
@@ -140,6 +194,7 @@ public:
         btnUserList->setObjectName(QStringLiteral("btnUserList"));
         btnUserList->setMinimumSize(QSize(40, 40));
         btnUserList->setMaximumSize(QSize(40, 40));
+        btnUserList->setCursor(QCursor(Qt::PointingHandCursor));
 
         verticalLayout->addWidget(btnUserList);
 
@@ -147,6 +202,7 @@ public:
         btnCollection->setObjectName(QStringLiteral("btnCollection"));
         btnCollection->setMinimumSize(QSize(40, 40));
         btnCollection->setMaximumSize(QSize(40, 40));
+        btnCollection->setCursor(QCursor(Qt::PointingHandCursor));
 
         verticalLayout->addWidget(btnCollection);
 
@@ -154,6 +210,7 @@ public:
         btnFile->setObjectName(QStringLiteral("btnFile"));
         btnFile->setMinimumSize(QSize(40, 40));
         btnFile->setMaximumSize(QSize(40, 40));
+        btnFile->setCursor(QCursor(Qt::PointingHandCursor));
 
         verticalLayout->addWidget(btnFile);
 
@@ -161,6 +218,7 @@ public:
         btnLook->setObjectName(QStringLiteral("btnLook"));
         btnLook->setMinimumSize(QSize(40, 40));
         btnLook->setMaximumSize(QSize(40, 40));
+        btnLook->setCursor(QCursor(Qt::PointingHandCursor));
 
         verticalLayout->addWidget(btnLook);
 
@@ -172,6 +230,7 @@ public:
         btnTinyProgram->setObjectName(QStringLiteral("btnTinyProgram"));
         btnTinyProgram->setMinimumSize(QSize(40, 40));
         btnTinyProgram->setMaximumSize(QSize(40, 40));
+        btnTinyProgram->setCursor(QCursor(Qt::PointingHandCursor));
 
         verticalLayout->addWidget(btnTinyProgram);
 
@@ -179,6 +238,7 @@ public:
         btnPhone->setObjectName(QStringLiteral("btnPhone"));
         btnPhone->setMinimumSize(QSize(40, 40));
         btnPhone->setMaximumSize(QSize(40, 40));
+        btnPhone->setCursor(QCursor(Qt::PointingHandCursor));
 
         verticalLayout->addWidget(btnPhone);
 
@@ -186,6 +246,7 @@ public:
         btnMore->setObjectName(QStringLiteral("btnMore"));
         btnMore->setMinimumSize(QSize(40, 40));
         btnMore->setMaximumSize(QSize(40, 40));
+        btnMore->setCursor(QCursor(Qt::PointingHandCursor));
 
         verticalLayout->addWidget(btnMore);
 
@@ -280,10 +341,10 @@ public:
         widget_3 = new QWidget(widget_12);
         widget_3->setObjectName(QStringLiteral("widget_3"));
         widget_3->setMinimumSize(QSize(390, 500));
-        verticalLayout_5 = new QVBoxLayout(widget_3);
-        verticalLayout_5->setSpacing(0);
-        verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
-        verticalLayout_5->setContentsMargins(0, 0, 0, 0);
+        verticalLayout_3 = new QVBoxLayout(widget_3);
+        verticalLayout_3->setSpacing(0);
+        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        verticalLayout_3->setContentsMargins(0, 0, 0, 0);
         widget_6 = new QWidget(widget_3);
         widget_6->setObjectName(QStringLiteral("widget_6"));
         QSizePolicy sizePolicy3(QSizePolicy::Preferred, QSizePolicy::Fixed);
@@ -338,9 +399,43 @@ public:
         horizontalLayout_3->addWidget(btnClose);
 
 
-        verticalLayout_5->addWidget(widget_6);
+        verticalLayout_3->addWidget(widget_6);
 
-        widget_7 = new QWidget(widget_3);
+        stackedWidget = new QStackedWidget(widget_3);
+        stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
+        page_4 = new QWidget();
+        page_4->setObjectName(QStringLiteral("page_4"));
+        horizontalLayout_12 = new QHBoxLayout(page_4);
+        horizontalLayout_12->setObjectName(QStringLiteral("horizontalLayout_12"));
+        horizontalSpacer_10 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_12->addItem(horizontalSpacer_10);
+
+        lbIcon = new QLabel(page_4);
+        lbIcon->setObjectName(QStringLiteral("lbIcon"));
+        lbIcon->setMinimumSize(QSize(150, 150));
+        lbIcon->setMaximumSize(QSize(150, 150));
+
+        horizontalLayout_12->addWidget(lbIcon);
+
+        horizontalSpacer_11 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_12->addItem(horizontalSpacer_11);
+
+        stackedWidget->addWidget(page_4);
+        page = new QWidget();
+        page->setObjectName(QStringLiteral("page"));
+        verticalLayout_7 = new QVBoxLayout(page);
+        verticalLayout_7->setSpacing(0);
+        verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
+        verticalLayout_7->setContentsMargins(0, 0, 0, 0);
+        widget_13 = new QWidget(page);
+        widget_13->setObjectName(QStringLiteral("widget_13"));
+        verticalLayout_5 = new QVBoxLayout(widget_13);
+        verticalLayout_5->setSpacing(0);
+        verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
+        verticalLayout_5->setContentsMargins(0, 0, 0, 0);
+        widget_7 = new QWidget(widget_13);
         widget_7->setObjectName(QStringLiteral("widget_7"));
         sizePolicy3.setHeightForWidth(widget_7->sizePolicy().hasHeightForWidth());
         widget_7->setSizePolicy(sizePolicy3);
@@ -379,26 +474,22 @@ public:
 
         verticalLayout_5->addWidget(widget_7);
 
-        widget_8 = new QWidget(widget_3);
-        widget_8->setObjectName(QStringLiteral("widget_8"));
-        verticalLayout_4 = new QVBoxLayout(widget_8);
+        stackWgtMsgList = new QStackedWidget(widget_13);
+        stackWgtMsgList->setObjectName(QStringLiteral("stackWgtMsgList"));
+        msgPage = new QWidget();
+        msgPage->setObjectName(QStringLiteral("msgPage"));
+        verticalLayout_4 = new QVBoxLayout(msgPage);
         verticalLayout_4->setSpacing(0);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
         verticalLayout_4->setContentsMargins(0, 0, 0, 0);
-        scroAreaRight = new QScrollArea(widget_8);
-        scroAreaRight->setObjectName(QStringLiteral("scroAreaRight"));
-        scroAreaRight->setWidgetResizable(true);
-        scrollAreaWidgetContents_2 = new QWidget();
-        scrollAreaWidgetContents_2->setObjectName(QStringLiteral("scrollAreaWidgetContents_2"));
-        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 410, 364));
-        scroAreaRight->setWidget(scrollAreaWidgetContents_2);
+        stackWgtMsgList->addWidget(msgPage);
+        page_5 = new QWidget();
+        page_5->setObjectName(QStringLiteral("page_5"));
+        stackWgtMsgList->addWidget(page_5);
 
-        verticalLayout_4->addWidget(scroAreaRight);
+        verticalLayout_5->addWidget(stackWgtMsgList);
 
-
-        verticalLayout_5->addWidget(widget_8);
-
-        widget_9 = new QWidget(widget_3);
+        widget_9 = new QWidget(widget_13);
         widget_9->setObjectName(QStringLiteral("widget_9"));
         sizePolicy3.setHeightForWidth(widget_9->sizePolicy().hasHeightForWidth());
         widget_9->setSizePolicy(sizePolicy3);
@@ -486,13 +577,248 @@ public:
         verticalLayout_5->addWidget(widget_9);
 
 
+        verticalLayout_7->addWidget(widget_13);
+
+        stackedWidget->addWidget(page);
+        page_2 = new QWidget();
+        page_2->setObjectName(QStringLiteral("page_2"));
+        verticalLayout_8 = new QVBoxLayout(page_2);
+        verticalLayout_8->setSpacing(0);
+        verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
+        verticalLayout_8->setContentsMargins(0, 0, 0, 0);
+        widget_14 = new QWidget(page_2);
+        widget_14->setObjectName(QStringLiteral("widget_14"));
+        sizePolicy3.setHeightForWidth(widget_14->sizePolicy().hasHeightForWidth());
+        widget_14->setSizePolicy(sizePolicy3);
+        widget_14->setMinimumSize(QSize(0, 36));
+        widget_14->setMaximumSize(QSize(16777215, 36));
+        horizontalLayout_7 = new QHBoxLayout(widget_14);
+        horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
+        horizontalLayout_7->setContentsMargins(30, 0, -1, 0);
+        label_2 = new QLabel(widget_14);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        QFont font4;
+        font4.setFamily(QString::fromUtf8("\345\276\256\350\275\257\351\233\205\351\273\221"));
+        font4.setPointSize(14);
+        label_2->setFont(font4);
+
+        horizontalLayout_7->addWidget(label_2);
+
+        horizontalSpacer_7 = new QSpacerItem(285, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_7->addItem(horizontalSpacer_7);
+
+
+        verticalLayout_8->addWidget(widget_14);
+
+        widget_15 = new QWidget(page_2);
+        widget_15->setObjectName(QStringLiteral("widget_15"));
+        horizontalLayout_8 = new QHBoxLayout(widget_15);
+        horizontalLayout_8->setSpacing(12);
+        horizontalLayout_8->setObjectName(QStringLiteral("horizontalLayout_8"));
+        horizontalLayout_8->setContentsMargins(0, 9, 0, 9);
+        horizontalSpacer_8 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_8->addItem(horizontalSpacer_8);
+
+        ledtNewFriend = new QLineEdit(widget_15);
+        ledtNewFriend->setObjectName(QStringLiteral("ledtNewFriend"));
+        sizePolicy.setHeightForWidth(ledtNewFriend->sizePolicy().hasHeightForWidth());
+        ledtNewFriend->setSizePolicy(sizePolicy);
+        ledtNewFriend->setMinimumSize(QSize(160, 30));
+        ledtNewFriend->setMaximumSize(QSize(160, 30));
+        ledtNewFriend->setFont(font);
+
+        horizontalLayout_8->addWidget(ledtNewFriend);
+
+        btnSearchFriend = new QPushButton(widget_15);
+        btnSearchFriend->setObjectName(QStringLiteral("btnSearchFriend"));
+        sizePolicy.setHeightForWidth(btnSearchFriend->sizePolicy().hasHeightForWidth());
+        btnSearchFriend->setSizePolicy(sizePolicy);
+        btnSearchFriend->setMinimumSize(QSize(75, 30));
+        btnSearchFriend->setMaximumSize(QSize(75, 30));
+        btnSearchFriend->setFont(font2);
+
+        horizontalLayout_8->addWidget(btnSearchFriend);
+
+        horizontalSpacer_9 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_8->addItem(horizontalSpacer_9);
+
+
+        verticalLayout_8->addWidget(widget_15);
+
+        scrollArea = new QScrollArea(page_2);
+        scrollArea->setObjectName(QStringLiteral("scrollArea"));
+        scrollArea->setWidgetResizable(true);
+        scrollAreaWidgetContents_3 = new QWidget();
+        scrollAreaWidgetContents_3->setObjectName(QStringLiteral("scrollAreaWidgetContents_3"));
+        scrollAreaWidgetContents_3->setGeometry(QRect(0, 0, 407, 388));
+        scrollArea->setWidget(scrollAreaWidgetContents_3);
+
+        verticalLayout_8->addWidget(scrollArea);
+
+        stackedWidget->addWidget(page_2);
+        page_3 = new QWidget();
+        page_3->setObjectName(QStringLiteral("page_3"));
+        verticalLayout_11 = new QVBoxLayout(page_3);
+        verticalLayout_11->setObjectName(QStringLiteral("verticalLayout_11"));
+        widget_16 = new QWidget(page_3);
+        widget_16->setObjectName(QStringLiteral("widget_16"));
+        widget_16->setFont(font3);
+        verticalLayout_10 = new QVBoxLayout(widget_16);
+        verticalLayout_10->setSpacing(0);
+        verticalLayout_10->setObjectName(QStringLiteral("verticalLayout_10"));
+        verticalLayout_10->setContentsMargins(0, 0, 0, 0);
+        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_10->addItem(verticalSpacer_2);
+
+        widget_17 = new QWidget(widget_16);
+        widget_17->setObjectName(QStringLiteral("widget_17"));
+        horizontalLayout_10 = new QHBoxLayout(widget_17);
+        horizontalLayout_10->setObjectName(QStringLiteral("horizontalLayout_10"));
+        widget_20 = new QWidget(widget_17);
+        widget_20->setObjectName(QStringLiteral("widget_20"));
+        verticalLayout_9 = new QVBoxLayout(widget_20);
+        verticalLayout_9->setObjectName(QStringLiteral("verticalLayout_9"));
+        lbUserName = new QLabel(widget_20);
+        lbUserName->setObjectName(QStringLiteral("lbUserName"));
+
+        verticalLayout_9->addWidget(lbUserName);
+
+        lbSaySth = new QLabel(widget_20);
+        lbSaySth->setObjectName(QStringLiteral("lbSaySth"));
+
+        verticalLayout_9->addWidget(lbSaySth);
+
+
+        horizontalLayout_10->addWidget(widget_20);
+
+        lbHeadIcon = new QLabel(widget_17);
+        lbHeadIcon->setObjectName(QStringLiteral("lbHeadIcon"));
+
+        horizontalLayout_10->addWidget(lbHeadIcon);
+
+
+        verticalLayout_10->addWidget(widget_17);
+
+        widget_18 = new QWidget(widget_16);
+        widget_18->setObjectName(QStringLiteral("widget_18"));
+        sizePolicy.setHeightForWidth(widget_18->sizePolicy().hasHeightForWidth());
+        widget_18->setSizePolicy(sizePolicy);
+        widget_18->setFont(font);
+        formLayout = new QFormLayout(widget_18);
+        formLayout->setObjectName(QStringLiteral("formLayout"));
+        formLayout->setHorizontalSpacing(30);
+        formLayout->setVerticalSpacing(10);
+        lbRemark = new QLabel(widget_18);
+        lbRemark->setObjectName(QStringLiteral("lbRemark"));
+        sizePolicy.setHeightForWidth(lbRemark->sizePolicy().hasHeightForWidth());
+        lbRemark->setSizePolicy(sizePolicy);
+
+        formLayout->setWidget(0, QFormLayout::LabelRole, lbRemark);
+
+        lbRemarkContent = new QLabel(widget_18);
+        lbRemarkContent->setObjectName(QStringLiteral("lbRemarkContent"));
+        sizePolicy.setHeightForWidth(lbRemarkContent->sizePolicy().hasHeightForWidth());
+        lbRemarkContent->setSizePolicy(sizePolicy);
+        lbRemarkContent->setMinimumSize(QSize(300, 0));
+        lbRemarkContent->setMaximumSize(QSize(300, 16777215));
+
+        formLayout->setWidget(0, QFormLayout::FieldRole, lbRemarkContent);
+
+        lbRegion = new QLabel(widget_18);
+        lbRegion->setObjectName(QStringLiteral("lbRegion"));
+        sizePolicy.setHeightForWidth(lbRegion->sizePolicy().hasHeightForWidth());
+        lbRegion->setSizePolicy(sizePolicy);
+
+        formLayout->setWidget(1, QFormLayout::LabelRole, lbRegion);
+
+        lbRegionContent = new QLabel(widget_18);
+        lbRegionContent->setObjectName(QStringLiteral("lbRegionContent"));
+        sizePolicy.setHeightForWidth(lbRegionContent->sizePolicy().hasHeightForWidth());
+        lbRegionContent->setSizePolicy(sizePolicy);
+        lbRegionContent->setMinimumSize(QSize(300, 0));
+        lbRegionContent->setMaximumSize(QSize(300, 16777215));
+
+        formLayout->setWidget(1, QFormLayout::FieldRole, lbRegionContent);
+
+        lbId = new QLabel(widget_18);
+        lbId->setObjectName(QStringLiteral("lbId"));
+        sizePolicy.setHeightForWidth(lbId->sizePolicy().hasHeightForWidth());
+        lbId->setSizePolicy(sizePolicy);
+
+        formLayout->setWidget(2, QFormLayout::LabelRole, lbId);
+
+        lbIdContent = new QLabel(widget_18);
+        lbIdContent->setObjectName(QStringLiteral("lbIdContent"));
+        sizePolicy.setHeightForWidth(lbIdContent->sizePolicy().hasHeightForWidth());
+        lbIdContent->setSizePolicy(sizePolicy);
+        lbIdContent->setMinimumSize(QSize(300, 0));
+        lbIdContent->setMaximumSize(QSize(300, 16777215));
+
+        formLayout->setWidget(2, QFormLayout::FieldRole, lbIdContent);
+
+        lbFrom = new QLabel(widget_18);
+        lbFrom->setObjectName(QStringLiteral("lbFrom"));
+        sizePolicy.setHeightForWidth(lbFrom->sizePolicy().hasHeightForWidth());
+        lbFrom->setSizePolicy(sizePolicy);
+
+        formLayout->setWidget(3, QFormLayout::LabelRole, lbFrom);
+
+        lbFromContent = new QLabel(widget_18);
+        lbFromContent->setObjectName(QStringLiteral("lbFromContent"));
+        sizePolicy.setHeightForWidth(lbFromContent->sizePolicy().hasHeightForWidth());
+        lbFromContent->setSizePolicy(sizePolicy);
+        lbFromContent->setMinimumSize(QSize(300, 0));
+        lbFromContent->setMaximumSize(QSize(300, 16777215));
+
+        formLayout->setWidget(3, QFormLayout::FieldRole, lbFromContent);
+
+
+        verticalLayout_10->addWidget(widget_18);
+
+        widget_19 = new QWidget(widget_16);
+        widget_19->setObjectName(QStringLiteral("widget_19"));
+        horizontalLayout_11 = new QHBoxLayout(widget_19);
+        horizontalLayout_11->setObjectName(QStringLiteral("horizontalLayout_11"));
+        btnSendMsg = new QPushButton(widget_19);
+        btnSendMsg->setObjectName(QStringLiteral("btnSendMsg"));
+        sizePolicy.setHeightForWidth(btnSendMsg->sizePolicy().hasHeightForWidth());
+        btnSendMsg->setSizePolicy(sizePolicy);
+        btnSendMsg->setMinimumSize(QSize(140, 35));
+        btnSendMsg->setMaximumSize(QSize(140, 35));
+        btnSendMsg->setFont(font2);
+
+        horizontalLayout_11->addWidget(btnSendMsg);
+
+
+        verticalLayout_10->addWidget(widget_19);
+
+        verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_10->addItem(verticalSpacer_3);
+
+
+        verticalLayout_11->addWidget(widget_16);
+
+        stackedWidget->addWidget(page_3);
+
+        verticalLayout_3->addWidget(stackedWidget);
+
+
         horizontalLayout_2->addWidget(widget_3);
 
 
-        verticalLayout_8->addWidget(widget_12);
+        horizontalLayout_9->addWidget(widget_12);
 
 
         retranslateUi(mainWidget);
+
+        stackedWidget->setCurrentIndex(1);
+        stackWgtMsgList->setCurrentIndex(0);
+
 
         QMetaObject::connectSlotsByName(mainWidget);
     } // setupUi
@@ -515,6 +841,7 @@ public:
         btnMinSize->setText(QString());
         btnMaxSize->setText(QString());
         btnClose->setText(QString());
+        lbIcon->setText(QString());
         label->setText(QApplication::translate("mainWidget", "\346\234\250\344\272\272\344\271\213", Q_NULLPTR));
         btnChatMsg->setText(QString());
         btnEmoji->setText(QApplication::translate("mainWidget", "...", Q_NULLPTR));
@@ -522,6 +849,20 @@ public:
         btnCut->setText(QApplication::translate("mainWidget", "...", Q_NULLPTR));
         btnChatRecord->setText(QApplication::translate("mainWidget", "...", Q_NULLPTR));
         btnSend->setText(QApplication::translate("mainWidget", "\345\217\221\351\200\201(S)", Q_NULLPTR));
+        label_2->setText(QApplication::translate("mainWidget", "\346\226\260\347\232\204\346\234\213\345\217\213", Q_NULLPTR));
+        btnSearchFriend->setText(QApplication::translate("mainWidget", "\346\237\245\346\211\276", Q_NULLPTR));
+        lbUserName->setText(QApplication::translate("mainWidget", "UserName", Q_NULLPTR));
+        lbSaySth->setText(QApplication::translate("mainWidget", "\350\257\264\347\202\271\345\225\245", Q_NULLPTR));
+        lbHeadIcon->setText(QApplication::translate("mainWidget", "TextLabel", Q_NULLPTR));
+        lbRemark->setText(QApplication::translate("mainWidget", "\345\244\207  \346\263\250", Q_NULLPTR));
+        lbRemarkContent->setText(QApplication::translate("mainWidget", "\345\221\265\345\221\265", Q_NULLPTR));
+        lbRegion->setText(QApplication::translate("mainWidget", "\345\234\260  \345\214\272", Q_NULLPTR));
+        lbRegionContent->setText(QApplication::translate("mainWidget", "\344\270\255\345\233\275", Q_NULLPTR));
+        lbId->setText(QApplication::translate("mainWidget", "  I  D", Q_NULLPTR));
+        lbIdContent->setText(QApplication::translate("mainWidget", "wojiaojd", Q_NULLPTR));
+        lbFrom->setText(QApplication::translate("mainWidget", "\346\235\245  \346\272\220", Q_NULLPTR));
+        lbFromContent->setText(QApplication::translate("mainWidget", "\345\276\256\344\277\241\345\217\267\346\220\234\347\264\242", Q_NULLPTR));
+        btnSendMsg->setText(QApplication::translate("mainWidget", "\345\217\221\346\266\210\346\201\257", Q_NULLPTR));
     } // retranslateUi
 
 };

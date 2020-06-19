@@ -5,8 +5,6 @@
 #include <QPainter>
 #include <QEvent>
 #include <QDebug>
-#include <QDrag>
-#include <QMimeData>
 
 signinWidget::signinWidget(QWidget *parent) :
     QWidget(parent),

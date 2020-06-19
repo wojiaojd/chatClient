@@ -7,6 +7,7 @@
 QT       += core gui
 QT       += network
 
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = chatClient
@@ -35,7 +36,11 @@ SOURCES += \
     mainwidget.cpp \
     chatlistitem.cpp \
     othersidemsg.cpp \
-    friendlistitem.cpp
+    friendlistitem.cpp \
+    newfriend.cpp \
+    thissidemsg.cpp \
+    threadhandler.cpp \
+    usrinfo.cpp
 
 HEADERS += \
         signinwidget.h \
@@ -46,7 +51,11 @@ HEADERS += \
     mainwidget.h \
     chatlistitem.h \
     othersidemsg.h \
-    friendlistitem.h
+    friendlistitem.h \
+    newfriend.h \
+    thissidemsg.h \
+    threadhandler.h \
+    usrinfo.h
 
 FORMS += \
         signinwidget.ui \
@@ -55,7 +64,9 @@ FORMS += \
     mainwidget.ui \
     chatlistitem.ui \
     othersidemsg.ui \
-    friendlistitem.ui
+    friendlistitem.ui \
+    newfriend.ui \
+    thissidemsg.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

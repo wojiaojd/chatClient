@@ -40,7 +40,7 @@ public:
     {
         if (otherSideMsg->objectName().isEmpty())
             otherSideMsg->setObjectName(QStringLiteral("otherSideMsg"));
-        otherSideMsg->resize(439, 57);
+        otherSideMsg->resize(383, 57);
         QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -49,7 +49,7 @@ public:
         horizontalLayout = new QHBoxLayout(otherSideMsg);
         horizontalLayout->setSpacing(0);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        horizontalLayout->setContentsMargins(-1, 3, -1, 0);
+        horizontalLayout->setContentsMargins(0, 3, 0, 3);
         wdgLeft = new QWidget(otherSideMsg);
         wdgLeft->setObjectName(QStringLiteral("wdgLeft"));
         QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Minimum);
@@ -88,7 +88,7 @@ public:
         wgtRight->setSizePolicy(sizePolicy3);
         verticalLayout_2 = new QVBoxLayout(wgtRight);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        verticalLayout_2->setContentsMargins(-1, 0, -1, 0);
+        verticalLayout_2->setContentsMargins(0, 0, -1, 0);
         lbUserName = new QLabel(wgtRight);
         lbUserName->setObjectName(QStringLiteral("lbUserName"));
         QSizePolicy sizePolicy4(QSizePolicy::Preferred, QSizePolicy::Fixed);

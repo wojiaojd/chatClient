@@ -126,20 +126,28 @@ bool signinWidget_1::eventFilter(QObject *watched, QEvent *event)
                 disconnect(sockHandler, nullptr, nullptr, nullptr);
                 connect(sockHandler, &QTcpSocket::connected, [=](){
                     qDebug()<<"连接成功";
-                    qDebug() << "用户登录";
                     QByteArray account = ui->ledtAccount->text().toUtf8();
                     QByteArray password = ui->ledtPassword->text().toUtf8();
                     if(!LegalityCheck::validUserData(account, password))
                         sockHandler->disconnectFromHost();
+                    //用户登录
                     sockHandler->signin(account, password);
                 });
                 connect(sockHandler, &QTcpSocket::readyRead, [=](){
                    if(sockHandler->signinRecv())
                    {
                        qDebug() << "登录成功";
-                       mainWidget *mnWdgt = new mainWidget;
+                       disconnect(sockHandler, nullptr, nullptr, nullptr);
+                       sockHandler->setId(ui->ledtAccount->text().toUtf8().toInt());
+                       //显示主界面，初始化用户id
+                       MainWidget *mnWdgt = new MainWidget(sockHandler);
+                       mnWdgt->setId(ui->ledtAccount->text().toUtf8().toInt());
                        mnWdgt->show();
                        this->hide();
+                   }
+                   else
+                   {
+                       sockHandler->disconnectFromHost();
                    }
                 });
                 this->sockHandler->connectServer();

@@ -20,25 +20,25 @@
 QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
-struct qt_meta_stringdata_otherSideMsg_t {
+struct qt_meta_stringdata_OtherSideMsg_t {
     QByteArrayData data[1];
     char stringdata0[13];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_otherSideMsg_t, stringdata0) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_OtherSideMsg_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
-static const qt_meta_stringdata_otherSideMsg_t qt_meta_stringdata_otherSideMsg = {
+static const qt_meta_stringdata_OtherSideMsg_t qt_meta_stringdata_OtherSideMsg = {
     {
-QT_MOC_LITERAL(0, 0, 12) // "otherSideMsg"
+QT_MOC_LITERAL(0, 0, 12) // "OtherSideMsg"
 
     },
-    "otherSideMsg"
+    "OtherSideMsg"
 };
 #undef QT_MOC_LITERAL
 
-static const uint qt_meta_data_otherSideMsg[] = {
+static const uint qt_meta_data_OtherSideMsg[] = {
 
  // content:
        7,       // revision
@@ -54,7 +54,7 @@ static const uint qt_meta_data_otherSideMsg[] = {
        0        // eod
 };
 
-void otherSideMsg::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void OtherSideMsg::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     Q_UNUSED(_o);
     Q_UNUSED(_id);
@@ -62,26 +62,26 @@ void otherSideMsg::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
     Q_UNUSED(_a);
 }
 
-const QMetaObject otherSideMsg::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_otherSideMsg.data,
-      qt_meta_data_otherSideMsg,  qt_static_metacall, nullptr, nullptr}
+const QMetaObject OtherSideMsg::staticMetaObject = {
+    { &QWidget::staticMetaObject, qt_meta_stringdata_OtherSideMsg.data,
+      qt_meta_data_OtherSideMsg,  qt_static_metacall, nullptr, nullptr}
 };
 
 
-const QMetaObject *otherSideMsg::metaObject() const
+const QMetaObject *OtherSideMsg::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *otherSideMsg::qt_metacast(const char *_clname)
+void *OtherSideMsg::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_otherSideMsg.stringdata0))
+    if (!strcmp(_clname, qt_meta_stringdata_OtherSideMsg.stringdata0))
         return static_cast<void*>(this);
     return QWidget::qt_metacast(_clname);
 }
 
-int otherSideMsg::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int OtherSideMsg::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QWidget::qt_metacall(_c, _id, _a);
     return _id;
