@@ -65,7 +65,7 @@ static const uint qt_meta_data_MainWidget[] = {
        4,    1,   27,    2, 0x0a /* Public */,
 
  // signals: parameters
-    QMetaType::Void, QMetaType::QString,    3,
+    QMetaType::Void, QMetaType::QByteArray,    3,
 
  // slots: parameters
     QMetaType::Void, 0x80000000 | 5,    6,
@@ -79,14 +79,14 @@ void MainWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         MainWidget *_t = static_cast<MainWidget *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->searchUser((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 0: _t->searchUser((*reinterpret_cast< QByteArray(*)>(_a[1]))); break;
         case 1: _t->postSearchedUsr((*reinterpret_cast< UsrInfo*(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            typedef void (MainWidget::*_t)(QString );
+            typedef void (MainWidget::*_t)(QByteArray );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&MainWidget::searchUser)) {
                 *result = 0;
                 return;
@@ -132,7 +132,7 @@ int MainWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void MainWidget::searchUser(QString _t1)
+void MainWidget::searchUser(QByteArray _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);

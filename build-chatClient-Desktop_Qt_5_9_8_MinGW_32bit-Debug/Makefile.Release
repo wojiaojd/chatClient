@@ -58,7 +58,8 @@ SOURCES       = ..\chatClient\main.cpp \
 		..\chatClient\newfriend.cpp \
 		..\chatClient\thissidemsg.cpp \
 		..\chatClient\threadhandler.cpp \
-		..\chatClient\usrinfo.cpp release\qrc_res.cpp \
+		..\chatClient\usrinfo.cpp \
+		..\chatClient\sockpackage.cpp release\qrc_res.cpp \
 		release\moc_signinwidget.cpp \
 		release\moc_signinwidget_1.cpp \
 		release\moc_sockhandler.cpp \
@@ -84,6 +85,7 @@ OBJECTS       = release/main.o \
 		release/thissidemsg.o \
 		release/threadhandler.o \
 		release/usrinfo.o \
+		release/sockpackage.o \
 		release/qrc_res.o \
 		release/moc_signinwidget.o \
 		release/moc_signinwidget_1.o \
@@ -109,7 +111,8 @@ DIST          =  ..\chatClient\signinwidget.h \
 		..\chatClient\newfriend.h \
 		..\chatClient\thissidemsg.h \
 		..\chatClient\threadhandler.h \
-		..\chatClient\usrinfo.h ..\chatClient\main.cpp \
+		..\chatClient\usrinfo.h \
+		..\chatClient\sockpackage.h ..\chatClient\main.cpp \
 		..\chatClient\signinwidget.cpp \
 		..\chatClient\signinwidget_1.cpp \
 		..\chatClient\sockhandler.cpp \
@@ -122,7 +125,8 @@ DIST          =  ..\chatClient\signinwidget.h \
 		..\chatClient\newfriend.cpp \
 		..\chatClient\thissidemsg.cpp \
 		..\chatClient\threadhandler.cpp \
-		..\chatClient\usrinfo.cpp
+		..\chatClient\usrinfo.cpp \
+		..\chatClient\sockpackage.cpp
 QMAKE_TARGET  = chatClient
 DESTDIR        = release\ #avoid trailing-slash linebreak
 TARGET         = chatClient.exe
@@ -142,10 +146,10 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) chatClient.zip $(SOURCES) $(DIST) ..\chatClient\chatClient.pro ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\spec_pre.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\qdevice.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\device_config.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\common\sanitize.conf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\common\gcc-base.conf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\common\g++-base.conf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\common\angle.conf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\qconfig.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3danimation.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3danimation_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dcore.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dcore_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dextras.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dextras_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dinput.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dinput_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dlogic.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dlogic_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dquick.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dquick_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dquickanimation.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dquickanimation_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dquickextras.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dquickextras_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dquickinput.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dquickinput_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dquickrender.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dquickrender_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dquickscene2d.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dquickscene2d_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3drender.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3drender_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_accessibility_support_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_axbase.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_axbase_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_axcontainer.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_axserver.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_axserver_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_bluetooth.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_concurrent.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_core.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_core_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_dbus.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_dbus_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_designer.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_designer_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_devicediscovery_support_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_egl_support_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_fb_support_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_fontdatabase_support_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_gamepad.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_gamepad_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_gui.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_gui_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_help.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_help_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_location.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_location_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_multimedia.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_network.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_network_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_nfc.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_nfc_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_opengl.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_opengl_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_openglextensions.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_packetprotocol_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_platformcompositor_support_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_positioning.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_positioning_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_printsupport.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_qml.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_qml_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_qmldebug_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_qmltest.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_quick.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_quick_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_quickcontrols2.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_quickcontrols2_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_quicktemplates2_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_script.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_script_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_scripttools.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_scripttools_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_scxml.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_scxml_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_sensors.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_sensors_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_serialbus.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_serialbus_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_serialport.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_serialport_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_sql.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_sql_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_svg.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_svg_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_testlib.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_testlib_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_theme_support_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_uiplugin.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_uitools.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_uitools_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_webchannel.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_websockets.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_websockets_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_widgets.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_widgets_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_winextras.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_winextras_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_xml.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_xml_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\qt_functions.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\qt_config.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\win32-g++\qmake.conf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\spec_post.prf .qmake.stash ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\exclusive_builds.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\toolchain.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\default_pre.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\win32\default_pre.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\resolve_config.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\exclusive_builds_post.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\default_post.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\build_pass.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\qml_debug.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\precompile_header.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\warn_on.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\qt.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\resources.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\moc.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\win32\opengl.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\uic.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\qmake_use.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\file_copies.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\win32\windows.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\testcase_targets.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\exceptions.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\yacc.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\lex.prf ..\chatClient\chatClient.pro ..\chatClient\res.qrc ..\..\..\Qt5.9.8\5.9.8\mingw53_32\lib\qtmain.prl ..\..\..\Qt5.9.8\5.9.8\mingw53_32\lib\Qt5Widgets.prl ..\..\..\Qt5.9.8\5.9.8\mingw53_32\lib\Qt5Gui.prl ..\..\..\Qt5.9.8\5.9.8\mingw53_32\lib\Qt5Network.prl ..\..\..\Qt5.9.8\5.9.8\mingw53_32\lib\Qt5Core.prl   ..\chatClient\res.qrc ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\data\dummy.cpp ..\chatClient\signinwidget.h ..\chatClient\signinwidget_1.h ..\chatClient\sockhandler.h ..\chatClient\legalitycheck.h ..\chatClient\chatermessagebox.h ..\chatClient\mainwidget.h ..\chatClient\chatlistitem.h ..\chatClient\othersidemsg.h ..\chatClient\friendlistitem.h ..\chatClient\newfriend.h ..\chatClient\thissidemsg.h ..\chatClient\threadhandler.h ..\chatClient\usrinfo.h ..\chatClient\main.cpp ..\chatClient\signinwidget.cpp ..\chatClient\signinwidget_1.cpp ..\chatClient\sockhandler.cpp ..\chatClient\legalitycheck.cpp ..\chatClient\chatermessagebox.cpp ..\chatClient\mainwidget.cpp ..\chatClient\chatlistitem.cpp ..\chatClient\othersidemsg.cpp ..\chatClient\friendlistitem.cpp ..\chatClient\newfriend.cpp ..\chatClient\thissidemsg.cpp ..\chatClient\threadhandler.cpp ..\chatClient\usrinfo.cpp ..\chatClient\signinwidget.ui ..\chatClient\signinwidget_1.ui ..\chatClient\chatermessagebox.ui ..\chatClient\mainwidget.ui ..\chatClient\chatlistitem.ui ..\chatClient\othersidemsg.ui ..\chatClient\friendlistitem.ui ..\chatClient\newfriend.ui ..\chatClient\thissidemsg.ui    
+	$(ZIP) chatClient.zip $(SOURCES) $(DIST) ..\chatClient\chatClient.pro ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\spec_pre.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\qdevice.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\device_config.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\common\sanitize.conf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\common\gcc-base.conf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\common\g++-base.conf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\common\angle.conf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\qconfig.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3danimation.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3danimation_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dcore.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dcore_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dextras.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dextras_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dinput.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dinput_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dlogic.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dlogic_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dquick.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dquick_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dquickanimation.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dquickanimation_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dquickextras.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dquickextras_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dquickinput.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dquickinput_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dquickrender.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dquickrender_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dquickscene2d.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3dquickscene2d_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3drender.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_3drender_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_accessibility_support_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_axbase.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_axbase_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_axcontainer.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_axserver.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_axserver_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_bluetooth.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_concurrent.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_core.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_core_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_dbus.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_dbus_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_designer.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_designer_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_devicediscovery_support_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_egl_support_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_fb_support_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_fontdatabase_support_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_gamepad.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_gamepad_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_gui.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_gui_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_help.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_help_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_location.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_location_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_multimedia.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_network.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_network_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_nfc.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_nfc_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_opengl.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_opengl_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_openglextensions.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_packetprotocol_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_platformcompositor_support_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_positioning.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_positioning_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_printsupport.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_qml.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_qml_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_qmldebug_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_qmltest.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_quick.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_quick_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_quickcontrols2.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_quickcontrols2_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_quicktemplates2_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_script.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_script_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_scripttools.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_scripttools_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_scxml.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_scxml_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_sensors.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_sensors_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_serialbus.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_serialbus_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_serialport.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_serialport_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_sql.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_sql_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_svg.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_svg_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_testlib.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_testlib_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_theme_support_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_uiplugin.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_uitools.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_uitools_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_webchannel.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_websockets.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_websockets_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_widgets.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_widgets_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_winextras.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_winextras_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_xml.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_xml_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\qt_functions.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\qt_config.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\win32-g++\qmake.conf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\spec_post.prf .qmake.stash ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\exclusive_builds.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\toolchain.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\default_pre.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\win32\default_pre.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\resolve_config.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\exclusive_builds_post.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\default_post.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\build_pass.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\qml_debug.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\precompile_header.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\warn_on.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\qt.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\resources.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\moc.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\win32\opengl.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\uic.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\qmake_use.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\file_copies.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\win32\windows.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\testcase_targets.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\exceptions.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\yacc.prf ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\lex.prf ..\chatClient\chatClient.pro ..\chatClient\res.qrc ..\..\..\Qt5.9.8\5.9.8\mingw53_32\lib\qtmain.prl ..\..\..\Qt5.9.8\5.9.8\mingw53_32\lib\Qt5Widgets.prl ..\..\..\Qt5.9.8\5.9.8\mingw53_32\lib\Qt5Gui.prl ..\..\..\Qt5.9.8\5.9.8\mingw53_32\lib\Qt5Network.prl ..\..\..\Qt5.9.8\5.9.8\mingw53_32\lib\Qt5Core.prl   ..\chatClient\res.qrc ..\..\..\Qt5.9.8\5.9.8\mingw53_32\mkspecs\features\data\dummy.cpp ..\chatClient\signinwidget.h ..\chatClient\signinwidget_1.h ..\chatClient\sockhandler.h ..\chatClient\legalitycheck.h ..\chatClient\chatermessagebox.h ..\chatClient\mainwidget.h ..\chatClient\chatlistitem.h ..\chatClient\othersidemsg.h ..\chatClient\friendlistitem.h ..\chatClient\newfriend.h ..\chatClient\thissidemsg.h ..\chatClient\threadhandler.h ..\chatClient\usrinfo.h ..\chatClient\sockpackage.h ..\chatClient\main.cpp ..\chatClient\signinwidget.cpp ..\chatClient\signinwidget_1.cpp ..\chatClient\sockhandler.cpp ..\chatClient\legalitycheck.cpp ..\chatClient\chatermessagebox.cpp ..\chatClient\mainwidget.cpp ..\chatClient\chatlistitem.cpp ..\chatClient\othersidemsg.cpp ..\chatClient\friendlistitem.cpp ..\chatClient\newfriend.cpp ..\chatClient\thissidemsg.cpp ..\chatClient\threadhandler.cpp ..\chatClient\usrinfo.cpp ..\chatClient\sockpackage.cpp ..\chatClient\signinwidget.ui ..\chatClient\signinwidget_1.ui ..\chatClient\chatermessagebox.ui ..\chatClient\mainwidget.ui ..\chatClient\chatlistitem.ui ..\chatClient\othersidemsg.ui ..\chatClient\friendlistitem.ui ..\chatClient\newfriend.ui ..\chatClient\thissidemsg.ui    
 
 clean: compiler_clean 
-	-$(DEL_FILE) release\main.o release\signinwidget.o release\signinwidget_1.o release\sockhandler.o release\legalitycheck.o release\chatermessagebox.o release\mainwidget.o release\chatlistitem.o release\othersidemsg.o release\friendlistitem.o release\newfriend.o release\thissidemsg.o release\threadhandler.o release\usrinfo.o release\qrc_res.o release\moc_signinwidget.o release\moc_signinwidget_1.o release\moc_sockhandler.o release\moc_chatermessagebox.o release\moc_mainwidget.o release\moc_chatlistitem.o release\moc_othersidemsg.o release\moc_friendlistitem.o release\moc_newfriend.o release\moc_thissidemsg.o release\moc_threadhandler.o
+	-$(DEL_FILE) release\main.o release\signinwidget.o release\signinwidget_1.o release\sockhandler.o release\legalitycheck.o release\chatermessagebox.o release\mainwidget.o release\chatlistitem.o release\othersidemsg.o release\friendlistitem.o release\newfriend.o release\thissidemsg.o release\threadhandler.o release\usrinfo.o release\sockpackage.o release\qrc_res.o release\moc_signinwidget.o release\moc_signinwidget_1.o release\moc_sockhandler.o release\moc_chatermessagebox.o release\moc_mainwidget.o release\moc_chatlistitem.o release\moc_othersidemsg.o release\moc_friendlistitem.o release\moc_newfriend.o release\moc_thissidemsg.o release\moc_threadhandler.o
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash
@@ -314,6 +318,7 @@ release/moc_signinwidget.cpp: ../../../Qt5.9.8/5.9.8/mingw53_32/include/QtWidget
 		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtNetwork/qhostaddress.h \
 		../chatClient/usrinfo.h \
 		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/QByteArray \
+		../chatClient/sockpackage.h \
 		../chatClient/legalitycheck.h \
 		../chatClient/signinwidget.h \
 		release/moc_predefs.h \
@@ -430,6 +435,7 @@ release/moc_signinwidget_1.cpp: ../../../Qt5.9.8/5.9.8/mingw53_32/include/QtWidg
 		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtNetwork/qhostaddress.h \
 		../chatClient/usrinfo.h \
 		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/QByteArray \
+		../chatClient/sockpackage.h \
 		../chatClient/legalitycheck.h \
 		../chatClient/signinwidget_1.h \
 		release/moc_predefs.h \
@@ -505,6 +511,7 @@ release/moc_sockhandler.cpp: ../../../Qt5.9.8/5.9.8/mingw53_32/include/QtNetwork
 		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtNetwork/qhostaddress.h \
 		../chatClient/usrinfo.h \
 		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/QByteArray \
+		../chatClient/sockpackage.h \
 		../chatClient/sockhandler.h \
 		release/moc_predefs.h \
 		../../../Qt5.9.8/5.9.8/mingw53_32/bin/moc.exe
@@ -744,6 +751,7 @@ release/moc_mainwidget.cpp: ../../../Qt5.9.8/5.9.8/mingw53_32/include/QtWidgets/
 		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtNetwork/qhostaddress.h \
 		../chatClient/usrinfo.h \
 		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/QByteArray \
+		../chatClient/sockpackage.h \
 		../chatClient/mainwidget.h \
 		release/moc_predefs.h \
 		../../../Qt5.9.8/5.9.8/mingw53_32/bin/moc.exe
@@ -1185,6 +1193,15 @@ release/moc_newfriend.cpp: ../../../Qt5.9.8/5.9.8/mingw53_32/include/QtWidgets/Q
 		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtGui/qtouchdevice.h \
 		../chatClient/usrinfo.h \
 		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/QByteArray \
+		../chatClient/sockhandler.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtNetwork/QTcpSocket \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtNetwork/qtcpsocket.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtNetwork/qtnetworkglobal.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtNetwork/qtnetwork-config.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtNetwork/qabstractsocket.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtNetwork/QHostAddress \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtNetwork/qhostaddress.h \
+		../chatClient/sockpackage.h \
 		../chatClient/newfriend.h \
 		release/moc_predefs.h \
 		../../../Qt5.9.8/5.9.8/mingw53_32/bin/moc.exe
@@ -1525,6 +1542,7 @@ release/main.o: ../chatClient/main.cpp ../chatClient/signinwidget.h \
 		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtNetwork/qhostaddress.h \
 		../chatClient/usrinfo.h \
 		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/QByteArray \
+		../chatClient/sockpackage.h \
 		../chatClient/legalitycheck.h \
 		../chatClient/mainwidget.h \
 		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/QPoint \
@@ -1667,6 +1685,7 @@ release/signinwidget.o: ../chatClient/signinwidget.cpp ../chatClient/signinwidge
 		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtNetwork/qhostaddress.h \
 		../chatClient/usrinfo.h \
 		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/QByteArray \
+		../chatClient/sockpackage.h \
 		../chatClient/legalitycheck.h \
 		ui_signinwidget.h \
 		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/QVariant \
@@ -1836,6 +1855,7 @@ release/signinwidget_1.o: ../chatClient/signinwidget_1.cpp ../chatClient/signinw
 		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtNetwork/qhostaddress.h \
 		../chatClient/usrinfo.h \
 		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/QByteArray \
+		../chatClient/sockpackage.h \
 		../chatClient/legalitycheck.h \
 		ui_signinwidget_1.h \
 		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/QVariant \
@@ -1986,6 +2006,7 @@ release/sockhandler.o: ../chatClient/sockhandler.cpp ../chatClient/sockhandler.h
 		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtNetwork/qhostaddress.h \
 		../chatClient/usrinfo.h \
 		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/QByteArray \
+		../chatClient/sockpackage.h \
 		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\sockhandler.o ..\chatClient\sockhandler.cpp
 
@@ -2306,6 +2327,7 @@ release/mainwidget.o: ../chatClient/mainwidget.cpp ../chatClient/mainwidget.h \
 		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtNetwork/qhostaddress.h \
 		../chatClient/usrinfo.h \
 		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/QByteArray \
+		../chatClient/sockpackage.h \
 		ui_mainwidget.h \
 		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/QVariant \
 		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtWidgets/QAction \
@@ -2924,6 +2946,15 @@ release/newfriend.o: ../chatClient/newfriend.cpp ../chatClient/newfriend.h \
 		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtGui/qtouchdevice.h \
 		../chatClient/usrinfo.h \
 		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/QByteArray \
+		../chatClient/sockhandler.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtNetwork/QTcpSocket \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtNetwork/qtcpsocket.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtNetwork/qtnetworkglobal.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtNetwork/qtnetwork-config.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtNetwork/qabstractsocket.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtNetwork/QHostAddress \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtNetwork/qhostaddress.h \
+		../chatClient/sockpackage.h \
 		ui_newfriend.h \
 		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/QVariant \
 		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtWidgets/QAction \
@@ -3203,6 +3234,39 @@ release/usrinfo.o: ../chatClient/usrinfo.cpp ../chatClient/usrinfo.h \
 		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/qchar.h \
 		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/qstringbuilder.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\usrinfo.o ..\chatClient\usrinfo.cpp
+
+release/sockpackage.o: ../chatClient/sockpackage.cpp ../chatClient/sockpackage.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/QByteArray \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/qbytearray.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/qrefcount.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/qatomic.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/qglobal.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/qconfig-bootstrapped.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/qconfig.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/qtcore-config.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/qsystemdetection.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/qprocessordetection.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/qcompilerdetection.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/qtypeinfo.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/qsysinfo.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/qlogging.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/qflags.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/qglobalstatic.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/qmutex.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/qnumeric.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/qversiontagging.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/qbasicatomic.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/qatomic_bootstrap.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/qgenericatomic.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/qatomic_cxx11.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/qatomic_msvc.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/qnamespace.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/qarraydata.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/qstring.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/qchar.h \
+		../../../Qt5.9.8/5.9.8/mingw53_32/include/QtCore/qstringbuilder.h \
+		../chatClient/usrinfo.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\sockpackage.o ..\chatClient\sockpackage.cpp
 
 release/qrc_res.o: release/qrc_res.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\qrc_res.o release\qrc_res.cpp

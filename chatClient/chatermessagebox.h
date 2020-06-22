@@ -7,13 +7,13 @@ namespace Ui {
 class chaterMessageBox;
 }
 
-class chaterMessageBox : public QWidget
+class ChaterMessageBox : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit chaterMessageBox(QWidget *parent = nullptr);
-    ~chaterMessageBox();
+    explicit ChaterMessageBox(QWidget *parent = nullptr);
+    ~ChaterMessageBox();
     void setText(const QString &);
 
 private:

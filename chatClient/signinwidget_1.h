@@ -25,11 +25,15 @@ private:
     QPoint oldMousePos;
     QString styleFormat;
     SockHandler *sockHandler;
-    QByteArray account;
+    int newId;
     bool isSignup;
 signals:
     void backToSigninWidget(const QPoint&);
 public slots:
+    void signup();
+    void handleSignupResult(int newId);
+    void signin();
+    void handleSigninResult(int cmd_1);
 };
 
 #endif // SIGNINWIDGET_1_H

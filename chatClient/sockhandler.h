@@ -4,6 +4,7 @@
 #include <QHostAddress>
 
 #include"usrinfo.h"
+#include "sockpackage.h"
 
 class SockHandler : public QTcpSocket
 {
@@ -21,25 +22,34 @@ public:
         CMD_BRIEF,
         CMD_DETAIL
     };
+    //此端用户信息
+    UsrInfo usrInfo;
+
     SockHandler(QObject *parent = nullptr);
     ~SockHandler();
     void signup(const QByteArray &userName, const QByteArray &password);
     void signin(const QByteArray &account, const QByteArray &password);
     bool signinRecv();
     QByteArray signupRecv();
-    UsrInfo *readUsrInfo();
     void setId(int id);
+    SockPackage & readPackage();
+
 private:
     QHostAddress *hostAddress;
-    //此端用户id
-    int id;
+    //最近收到的一个包
+    SockPackage package;
+
 signals:
     void searchedUsr(UsrInfo *info);
     void initUsrList(UsrInfo *info);
+    void signupResult(int id);
+    void signinResult(int cmd_1);
+
 public slots:
     void connectServer();
     void receive();
-    void getUserInfoBrief(QString uid);
+    void getUserInfoBrief(QByteArray uid);
+    void requestNewFriend(int id);
 
 };
 

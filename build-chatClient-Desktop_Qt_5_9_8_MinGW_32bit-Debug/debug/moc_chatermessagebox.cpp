@@ -20,25 +20,25 @@
 QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
-struct qt_meta_stringdata_chaterMessageBox_t {
+struct qt_meta_stringdata_ChaterMessageBox_t {
     QByteArrayData data[1];
     char stringdata0[17];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_chaterMessageBox_t, stringdata0) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_ChaterMessageBox_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
-static const qt_meta_stringdata_chaterMessageBox_t qt_meta_stringdata_chaterMessageBox = {
+static const qt_meta_stringdata_ChaterMessageBox_t qt_meta_stringdata_ChaterMessageBox = {
     {
-QT_MOC_LITERAL(0, 0, 16) // "chaterMessageBox"
+QT_MOC_LITERAL(0, 0, 16) // "ChaterMessageBox"
 
     },
-    "chaterMessageBox"
+    "ChaterMessageBox"
 };
 #undef QT_MOC_LITERAL
 
-static const uint qt_meta_data_chaterMessageBox[] = {
+static const uint qt_meta_data_ChaterMessageBox[] = {
 
  // content:
        7,       // revision
@@ -54,7 +54,7 @@ static const uint qt_meta_data_chaterMessageBox[] = {
        0        // eod
 };
 
-void chaterMessageBox::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void ChaterMessageBox::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     Q_UNUSED(_o);
     Q_UNUSED(_id);
@@ -62,26 +62,26 @@ void chaterMessageBox::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
     Q_UNUSED(_a);
 }
 
-const QMetaObject chaterMessageBox::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_chaterMessageBox.data,
-      qt_meta_data_chaterMessageBox,  qt_static_metacall, nullptr, nullptr}
+const QMetaObject ChaterMessageBox::staticMetaObject = {
+    { &QWidget::staticMetaObject, qt_meta_stringdata_ChaterMessageBox.data,
+      qt_meta_data_ChaterMessageBox,  qt_static_metacall, nullptr, nullptr}
 };
 
 
-const QMetaObject *chaterMessageBox::metaObject() const
+const QMetaObject *ChaterMessageBox::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *chaterMessageBox::qt_metacast(const char *_clname)
+void *ChaterMessageBox::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_chaterMessageBox.stringdata0))
+    if (!strcmp(_clname, qt_meta_stringdata_ChaterMessageBox.stringdata0))
         return static_cast<void*>(this);
     return QWidget::qt_metacast(_clname);
 }
 
-int chaterMessageBox::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int ChaterMessageBox::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QWidget::qt_metacall(_c, _id, _a);
     return _id;

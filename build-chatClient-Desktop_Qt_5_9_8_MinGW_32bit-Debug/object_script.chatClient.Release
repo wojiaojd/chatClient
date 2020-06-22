@@ -13,6 +13,7 @@ INPUT(
 ./release\thissidemsg.o
 ./release\threadhandler.o
 ./release\usrinfo.o
+./release\sockpackage.o
 ./release\qrc_res.o
 ./release\moc_signinwidget.o
 ./release\moc_signinwidget_1.o

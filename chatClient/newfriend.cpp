@@ -17,6 +17,10 @@ NewFriend::NewFriend(QWidget *parent) :
                               "}");
     ui->widget->installEventFilter(this);
     ui->btnAccept->installEventFilter(this);
+
+    connect(ui->btnAccept, &QPushButton::clicked, [=](){emit this->requestNewFriend(this->info->getId());});
+//    connect(this, &NewFriend::requestNewFriend, this->sockHandler, &SockHandler::requestNewFriend);
+
 }
 
 NewFriend::~NewFriend()
@@ -51,11 +55,11 @@ bool NewFriend::eventFilter(QObject *watched, QEvent *event)
         }
 
     }
+    return QWidget::eventFilter(watched, event);
 }
 
 void NewFriend::setInfo(UsrInfo *info)
 {
     this->info = info;
-    ui->lbMsg->setText(this->info->getMsg());
     ui->lbUserName->setText(this->info->getUsrName());
 }

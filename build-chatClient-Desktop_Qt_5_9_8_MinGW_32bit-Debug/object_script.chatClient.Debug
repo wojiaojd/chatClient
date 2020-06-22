@@ -13,6 +13,7 @@ INPUT(
 ./debug\thissidemsg.o
 ./debug\threadhandler.o
 ./debug\usrinfo.o
+./debug\sockpackage.o
 ./debug\qrc_res.o
 ./debug\moc_signinwidget.o
 ./debug\moc_signinwidget_1.o

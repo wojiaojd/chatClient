@@ -237,7 +237,7 @@ MainWidget::MainWidget(SockHandler *sockHandler, QWidget *parent) :
     //搜索用户
     connect(ui->btnSearchFriend, &QPushButton::clicked, [=](){
         QString uid = ui->ledtNewFriend->text();
-        emit this->searchUser(uid);
+        emit this->searchUser(uid.toUtf8());
     });
 //    //线程相关初始化
 //    QThread *recver = threadHandler->newObjThread(sockHandler);
@@ -288,7 +288,7 @@ bool MainWidget::eventFilter(QObject *watched, QEvent *event)
     //通讯录中id为1的好友是添加好友选项
     if(watched == getFriendItem(1))
     {
-        QMouseEvent *mouseEvent = (QMouseEvent *)event;
+        QMouseEvent *mouseEvent = static_cast<QMouseEvent *>(event);
         if(event->type() == QEvent::MouseButtonPress && mouseEvent->button() == Qt::LeftButton)
         {
             ui->stackedWidget->setCurrentIndex(2);
@@ -308,7 +308,7 @@ bool MainWidget::eventFilter(QObject *watched, QEvent *event)
             return QWidget::eventFilter(watched, event);
         }
     }
-
+    return QWidget::eventFilter(watched, event);
 }
 MainWidget::~MainWidget()
 {
@@ -325,6 +325,7 @@ FriendListItem * MainWidget::getFriendItem(int id)
         if(item->getId() == id)
             return item;
     }
+    return nullptr;
 }
 void MainWidget::addChatItem(ChatListItem *const item)
 {
@@ -337,17 +338,18 @@ ChatListItem * MainWidget::getChatItem(int id)
         if(item->getId() == id)
             return item;
     }
+    return nullptr;
 }
-void MainWidget::setId(int id)
-{
-    this->id = id;
-}
+//info是要展示的搜索到的用户信息
 void MainWidget::postSearchedUsr(UsrInfo *info)
 {
     NewFriend *newFriend = new NewFriend;
+    connect(newFriend, &NewFriend::requestNewFriend, this->sockHandler, &SockHandler::requestNewFriend);
     newFriend->setInfo(info);
+    //清除好友申请列表
     while(this->newFriendListLayout->takeAt(0) != nullptr)
     {
+        disconnect(this->newFriendListLayout->takeAt(0)->widget(), nullptr, nullptr, nullptr);
         this->newFriendListLayout->removeItem(this->newFriendListLayout->takeAt(0));
     }
     this->newFriendListLayout->update();

@@ -17,7 +17,7 @@ signinWidget_1::signinWidget_1(QWidget *parent) :
     this->oldMousePos = this->geometry().topLeft();
     this->isSignup = false;
     this->sockHandler = new SockHandler(this);
-    this->account = "";
+    this->newId = 0;
     //去除原窗口
     setWindowFlag(Qt::FramelessWindowHint);
     QBitmap widgetBmp(this->size());
@@ -124,67 +124,18 @@ bool signinWidget_1::eventFilter(QObject *watched, QEvent *event)
             {
                 //当前是登录界面
                 disconnect(sockHandler, nullptr, nullptr, nullptr);
-                connect(sockHandler, &QTcpSocket::connected, [=](){
-                    qDebug()<<"连接成功";
-                    QByteArray account = ui->ledtAccount->text().toUtf8();
-                    QByteArray password = ui->ledtPassword->text().toUtf8();
-                    if(!LegalityCheck::validUserData(account, password))
-                        sockHandler->disconnectFromHost();
-                    //用户登录
-                    sockHandler->signin(account, password);
-                });
-                connect(sockHandler, &QTcpSocket::readyRead, [=](){
-                   if(sockHandler->signinRecv())
-                   {
-                       qDebug() << "登录成功";
-                       disconnect(sockHandler, nullptr, nullptr, nullptr);
-                       sockHandler->setId(ui->ledtAccount->text().toUtf8().toInt());
-                       //显示主界面，初始化用户id
-                       MainWidget *mnWdgt = new MainWidget(sockHandler);
-                       mnWdgt->setId(ui->ledtAccount->text().toUtf8().toInt());
-                       mnWdgt->show();
-                       this->hide();
-                   }
-                   else
-                   {
-                       sockHandler->disconnectFromHost();
-                   }
-                });
+                connect(sockHandler, &SockHandler::connected, this, &signinWidget_1::signin);
+                connect(sockHandler, &SockHandler::readyRead, sockHandler, &SockHandler::receive);
+                connect(sockHandler, &SockHandler::signinResult, this, &signinWidget_1::handleSigninResult);
                 this->sockHandler->connectServer();
             }
             else
             {
                 //当前是注册界面
                 disconnect(sockHandler, nullptr, nullptr, nullptr);
-                connect(sockHandler, &QTcpSocket::connected, [=](){
-                    qDebug()<<"连接成功";
-                    qDebug() << "用户注册";
-                    QByteArray fstPsw = ui->ledtPassword->text().toUtf8();
-                    QFormLayout *layout = static_cast<QFormLayout*>(ui->widget_2->layout());
-                    QLineEdit *sndPswLedt = static_cast<QLineEdit*>(layout->itemAt(layout->count()-1)->widget());
-                    QByteArray sndPsw = sndPswLedt->text().toUtf8();
-                    QByteArray usrName = ui->ledtAccount->text().toUtf8();
-                    if(!LegalityCheck::validUserData(usrName, fstPsw, sndPsw))
-                    {
-                        sockHandler->disconnectFromHost();
-                        chaterMessageBox *ctMsgBox = new chaterMessageBox(this);
-                        ctMsgBox->setText("您的输入不合适\n");
-                        ctMsgBox->show();
-                    }
-                    sockHandler->signup(usrName, fstPsw);
-
-                });
-                connect(sockHandler, &SockHandler::readyRead, [=](){
-                    this->account = sockHandler->signupRecv();
-                    //注册成功，提示账号
-                    chaterMessageBox *ctMsgBox = new chaterMessageBox(this);
-                    ctMsgBox->setText("请记住您的账号:\n"+this->account);
-                    ctMsgBox->show();
-                    QEvent backEvent(QEvent::MouseButtonPress);
-                    QApplication::sendEvent(ui->lbBack, &backEvent);
-                    ui->ledtAccount->setText(this->account.data());
-                    sockHandler->disconnectFromHost();
-                });
+                connect(sockHandler, &QTcpSocket::connected, this, &signinWidget_1::signup);
+                connect(sockHandler, &SockHandler::readyRead, sockHandler, &SockHandler::receive);
+                connect(sockHandler, &SockHandler::signupResult, this, &signinWidget_1::handleSignupResult);
                 this->sockHandler->connectServer();
             }
         }
@@ -246,6 +197,7 @@ bool signinWidget_1::eventFilter(QObject *watched, QEvent *event)
 
    return QWidget::eventFilter(watched, event);
 }
+
 void signinWidget_1::mousePressEvent(QMouseEvent *event)
 {
     if(event->button() == Qt::LeftButton)
@@ -258,6 +210,7 @@ void signinWidget_1::mousePressEvent(QMouseEvent *event)
         }
     }
 }
+
 void signinWidget_1::mouseMoveEvent(QMouseEvent *event)
 {
     if(event->buttons() == Qt::LeftButton)
@@ -272,4 +225,64 @@ void signinWidget_1::mouseMoveEvent(QMouseEvent *event)
 signinWidget_1::~signinWidget_1()
 {
     delete ui;
+}
+
+void signinWidget_1::signup()
+{
+    qDebug()<<"连接成功";
+    qDebug() << "用户注册";
+    QByteArray fstPsw = ui->ledtPassword->text().toUtf8();
+    QFormLayout *layout = static_cast<QFormLayout*>(ui->widget_2->layout());
+    QLineEdit *sndPswLedt = static_cast<QLineEdit*>(layout->itemAt(layout->count()-1)->widget());
+    QByteArray sndPsw = sndPswLedt->text().toUtf8();
+    QByteArray usrName = ui->ledtAccount->text().toUtf8();
+    if(!LegalityCheck::validUserData(usrName, fstPsw, sndPsw))
+    {
+        sockHandler->disconnectFromHost();
+        ChaterMessageBox *ctMsgBox = new ChaterMessageBox(this);
+        ctMsgBox->setText("您的输入不合适\n");
+        ctMsgBox->show();
+    }
+    sockHandler->signup(usrName, fstPsw);
+}
+
+void signinWidget_1::handleSignupResult(int newId)
+{
+    //注册成功，提示账号
+    ChaterMessageBox *ctMsgBox = new ChaterMessageBox(this);
+    ctMsgBox->setText("请记住您的账号:\n"+QByteArray::number(newId));
+    ctMsgBox->show();
+    QEvent backEvent(QEvent::MouseButtonPress);
+    QApplication::sendEvent(ui->lbBack, &backEvent);
+    ui->ledtAccount->setText(QByteArray::number(newId));
+    sockHandler->disconnectFromHost();
+}
+
+void signinWidget_1::signin()
+{
+    qDebug()<<"连接成功";
+    QByteArray account = ui->ledtAccount->text().toUtf8();
+    QByteArray password = ui->ledtPassword->text().toUtf8();
+    if(!LegalityCheck::validUserData(account, password))
+        sockHandler->disconnectFromHost();
+    //用户登录
+    sockHandler->signin(account, password);
+}
+
+void signinWidget_1::handleSigninResult(int cmd_1)
+{
+    if(cmd_1 == SockHandler::CMD_CONFIRM)
+    {
+        qDebug() << "登录成功";
+        disconnect(sockHandler, nullptr, nullptr, nullptr);
+        sockHandler->usrInfo.setId(ui->ledtAccount->text().toUtf8().toInt());
+        //显示主界面，初始化用户id
+        MainWidget *mnWdgt = new MainWidget(sockHandler);
+        mnWdgt->show();
+        this->hide();
+    }
+    else if(cmd_1 == SockHandler::CMD_REFUSE)
+    {
+        sockHandler->disconnectFromHost();
+    }
 }

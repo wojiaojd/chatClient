@@ -40,7 +40,8 @@ SOURCES += \
     newfriend.cpp \
     thissidemsg.cpp \
     threadhandler.cpp \
-    usrinfo.cpp
+    usrinfo.cpp \
+    sockpackage.cpp
 
 HEADERS += \
         signinwidget.h \
@@ -55,7 +56,8 @@ HEADERS += \
     newfriend.h \
     thissidemsg.h \
     threadhandler.h \
-    usrinfo.h
+    usrinfo.h \
+    sockpackage.h
 
 FORMS += \
         signinwidget.ui \

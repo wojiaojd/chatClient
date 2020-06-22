@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "usrinfo.h"
+#include "sockhandler.h"
 namespace Ui {
 class NewFriend;
 }
@@ -16,6 +17,9 @@ public:
     bool eventFilter(QObject *watched, QEvent *event);
     ~NewFriend();
     void setInfo(UsrInfo *info);
+signals:
+    void requestNewFriend(int id);
+public slots:
 
 private:
     Ui::NewFriend *ui;

@@ -4,7 +4,7 @@
 #include <QPainter>
 #include <QDebug>
 
-chaterMessageBox::chaterMessageBox(QWidget *parent) :
+ChaterMessageBox::ChaterMessageBox(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::chaterMessageBox)
 {
@@ -34,12 +34,12 @@ chaterMessageBox::chaterMessageBox(QWidget *parent) :
     ui->btnMessage->setText("确定");
     connect(ui->btnMessage, &QPushButton::clicked, this, &QWidget::close);
 }
-void chaterMessageBox::setText(const QString &text)
+void ChaterMessageBox::setText(const QString &text)
 {
     ui->lbMessageText->setText(text);
 }
 
-chaterMessageBox::~chaterMessageBox()
+ChaterMessageBox::~ChaterMessageBox()
 {
     delete ui;
 }

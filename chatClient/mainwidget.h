@@ -33,7 +33,7 @@ public:
     void setId(int id);
     void setSockHandler(SockHandler *sockHandler);
 signals:
-    void searchUser(QString uid);
+    void searchUser(QByteArray uid);
 public slots:
     void postSearchedUsr(UsrInfo *info);
 private:
@@ -57,9 +57,6 @@ private:
     SockHandler *sockHandler;
     //接收并转发的线程
     ThreadHandler *threadHandler;
-    //此端用户id
-    int id;
-
 };
 
 #endif // MAINWIDGET_H
