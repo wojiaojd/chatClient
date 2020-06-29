@@ -22,7 +22,7 @@ public:
     int getCmd1(){return this->cmd_1;}
     int getSender(){return this->sender;}
     int getrecver(){return this->recver;}
-    QByteArray & getOtherMsg(){return this->otherMsg;}
+    QByteArray & getOtherMsg();
     const char * toRowMessage();
     //请求获取用户数据时使用
     UsrInfo * extractUsrInfo();

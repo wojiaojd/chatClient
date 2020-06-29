@@ -816,7 +816,7 @@ public:
 
         retranslateUi(mainWidget);
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(3);
         stackWgtMsgList->setCurrentIndex(0);
 
 

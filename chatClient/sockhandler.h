@@ -44,13 +44,17 @@ signals:
     void initUsrList(UsrInfo *info);
     void signupResult(int id);
     void signinResult(int cmd_1);
+    void recvNewFriendRequest(UsrInfo *info);
+    void recvNewFriendConfirm(UsrInfo *info);
+    void recvMsgFrom(int sender, const QByteArray &msg);
 
 public slots:
     void connectServer();
     void receive();
     void getUserInfoBrief(QByteArray uid);
     void requestNewFriend(int id);
-
+    void confirmNewFriend(int id);
+    void sendTo(int recver, const QByteArray &msg);
 };
 
 #endif // SOCKHANDLER_H

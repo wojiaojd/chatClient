@@ -60,3 +60,7 @@ void ChatListItem::msgFormResize()
     this->wgtMsgList->resize(this->scroMsgList->width()-20, this->wgtMsgList->height());
 
 }
+void ChatListItem::setUsrName(const QString &usrName)
+{
+    ui->lbUserName->setText(usrName);
+}

@@ -1,7 +1,6 @@
 #include "mainwidget.h"
 #include "ui_mainwidget.h"
 #include "chatlistitem.h"
-#include "newfriend.h"
 #include "othersidemsg.h"
 #include "thissidemsg.h"
 
@@ -147,8 +146,6 @@ MainWidget::MainWidget(SockHandler *sockHandler, QWidget *parent) :
     }
 
 
-
-
     //栈布局添加页面
     ui->widget_5->setLayout(this->myStackedLayout);
     //聊天列表页面
@@ -177,7 +174,7 @@ MainWidget::MainWidget(SockHandler *sockHandler, QWidget *parent) :
     this->myStackedLayout->addWidget(scroAreaLeftAddrList);
     //scroAreaLeftAddrList->show();
     //通讯录中添加好友的选项
-    FriendListItem *newFriend = new FriendListItem(this, 1);
+    FriendListItem *newFriend = new FriendListItem(1);
     newFriend->installEventFilter(this);
     newFriend->setText("新的朋友");
     newFriend->setPixmap(QPixmap(":/icons/newFriend.png"));
@@ -202,6 +199,7 @@ MainWidget::MainWidget(SockHandler *sockHandler, QWidget *parent) :
     connect(ui->btnNewChat, &QPushButton::clicked, [=](){
         ChatListItem *item = new ChatListItem();
         item->installEventFilter(this);
+        //加入管理
         this->addChatItem(item);
         ui->stackWgtMsgList->addWidget(item->scroMsgList);
         chatListLayout->addWidget(item);
@@ -209,22 +207,19 @@ MainWidget::MainWidget(SockHandler *sockHandler, QWidget *parent) :
 
     });
     connect(ui->btnSend, &QPushButton::clicked, [=](){
-        ThisSideMsg *thisMsg = new ThisSideMsg();
-        thisMsg->setText(ui->tedtInputArea->toPlainText());
-        this->currentChatItem->msgListLayout->addWidget(thisMsg);
-        thisMsg->show();
-
-        OtherSideMsg *otherMsg = new OtherSideMsg(this);
-        otherMsg->setText(ui->tedtInputArea->toPlainText());
-        this->currentChatItem->msgListLayout->addWidget(otherMsg);
-        otherMsg->show();
-        //滑动条置底
-        QScrollBar *scrollBar = this->currentChatItem->scroMsgList->verticalScrollBar();
-        scrollBar->setValue(scrollBar->maximum());
-        //清空输入框
-        ui->tedtInputArea->clear();
-
+        int recver = this->currentChatItem->getId();
+        qDebug() << "recver == " << recver;
+        QByteArray msg = ui->tedtInputArea->toPlainText().toUtf8();
+        int tail = msg.size()-1;
+        while(msg[tail] == '\n')
+        {
+            msg.remove(tail, 1);
+            tail--;
+        }
+        emit this->preparedMsgThisSide(recver, msg);
     });
+    connect(this, &MainWidget::preparedMsgThisSide, this, &MainWidget::sendMsgThisSide);
+    connect(this, &MainWidget::preparedMsgThisSide, sockHandler, &SockHandler::sendTo);
 
     connect(ui->btnChatWidget, &QToolButton::clicked, [=](){
         myStackedLayout->setCurrentIndex(0);
@@ -239,17 +234,43 @@ MainWidget::MainWidget(SockHandler *sockHandler, QWidget *parent) :
         QString uid = ui->ledtNewFriend->text();
         emit this->searchUser(uid.toUtf8());
     });
+
+    ////TODO:
+    /// 从通讯录选择用户聊天,待改进成为信号槽模式
+    connect(ui->btnSendMsg, &QPushButton::clicked, [=](){
+        //中间的布局选择聊天列表
+        myStackedLayout->setCurrentIndex(0);
+        //右边的布局选择聊天窗口
+        ui->stackedWidget->setCurrentIndex(1);
+        //聊天列表对象组件
+        ChatListItem *item = new ChatListItem();
+
+        item->setUsrName(ui->lbIdContent->text());
+        item->setId(ui->lbIdContent->text().toInt());
+        qDebug() << "item->setid:"<< item->getId();
+        item->installEventFilter(this);
+        this->addChatItem(item);
+        ui->stackWgtMsgList->addWidget(item->scroMsgList);
+        chatListLayout->addWidget(item);
+        this->currentChatItem = item;
+        item->show();
+
+        ui->stackWgtMsgList->setCurrentWidget(item->scroMsgList);
+        //重置widget的宽度，使聊天气泡widget横向填充
+        this->currentChatItem->msgFormResize();
+
+    });
+
+    connect(this, &MainWidget::searchUser, sockHandler, &SockHandler::getUserInfoBrief);
+    connect(sockHandler, &SockHandler::searchedUsr, this, &MainWidget::postSearchedUsr);
+    connect(sockHandler, &SockHandler::recvNewFriendRequest, this, &MainWidget::handleNewFriendRequest);
+    connect(sockHandler, &SockHandler::recvNewFriendConfirm, this, &MainWidget::handleNewFriendConfirm);
+    connect(sockHandler, &SockHandler::recvMsgFrom, this, &MainWidget::postMsgTo);
 //    //线程相关初始化
 //    QThread *recver = threadHandler->newObjThread(sockHandler);
 //    connect(recver, &QThread::finished, sockHandler, &SockHandler::deleteLater);
 //    connect(recver, &QThread::finished, threadHandler, &ThreadHandler::cleanUp);
 //    connect(sockHandler, &SockHandler::connected, [=](){recver->start();});
-
-    connect(this, &MainWidget::searchUser, sockHandler, &SockHandler::getUserInfoBrief);
-    connect(sockHandler, &SockHandler::searchedUsr, this, &MainWidget::postSearchedUsr);
-
-
-
 
     //过滤、转发来自服务器的消息
     connect(sockHandler, &SockHandler::readyRead, sockHandler, &SockHandler::receive);
@@ -343,13 +364,15 @@ ChatListItem * MainWidget::getChatItem(int id)
 //info是要展示的搜索到的用户信息
 void MainWidget::postSearchedUsr(UsrInfo *info)
 {
-    NewFriend *newFriend = new NewFriend;
+    NewFriend *newFriend = new NewFriend(NewFriend::SEARCHED);
+
+    this->newFriendItems.prepend(newFriend);
+
     connect(newFriend, &NewFriend::requestNewFriend, this->sockHandler, &SockHandler::requestNewFriend);
     newFriend->setInfo(info);
-    //清除好友申请列表
+    //清除好友申请列表,待改进
     while(this->newFriendListLayout->takeAt(0) != nullptr)
     {
-        disconnect(this->newFriendListLayout->takeAt(0)->widget(), nullptr, nullptr, nullptr);
         this->newFriendListLayout->removeItem(this->newFriendListLayout->takeAt(0));
     }
     this->newFriendListLayout->update();
@@ -359,4 +382,62 @@ void MainWidget::postSearchedUsr(UsrInfo *info)
 void MainWidget::setSockHandler(SockHandler *sockHandler)
 {
     this->sockHandler = sockHandler;
+}
+void MainWidget::handleNewFriendRequest(UsrInfo *info)
+{
+    NewFriend *newFriend = new NewFriend(NewFriend::REQUESTED);
+
+    this->newFriendItems.prepend(newFriend);
+
+    connect(newFriend, &NewFriend::confirmNewFriend, this->sockHandler, &SockHandler::confirmNewFriend);
+    newFriend->setInfo(info);
+    this->newFriendListLayout->addWidget(newFriend);
+    newFriend->show();
+}
+void MainWidget::handleNewFriendConfirm(UsrInfo *info)
+{
+    FriendListItem *item = new FriendListItem(info->getId());
+    item->setText(info->getUsrName());
+    this->friendListItems.push_back(item);
+    connect(item, &FriendListItem::showUsrInfo, this, &MainWidget::showUsrInfo);
+    this->addressListLayout->addWidget(item);
+    item->show();
+}
+void MainWidget::showUsrInfo(int id)
+{
+    ui->stackedWidget->setCurrentIndex(3);
+    ui->lbIdContent->setText(QString::number(id));
+}
+void MainWidget::sendMsgThisSide(int recver, const QByteArray &msg)
+{
+    ThisSideMsg *thisMsg = new ThisSideMsg();
+    thisMsg->setText(msg);
+    this->currentChatItem->msgListLayout->addWidget(thisMsg);
+    thisMsg->show();
+    //滑动条置底
+    QScrollBar *scrollBar = this->currentChatItem->scroMsgList->verticalScrollBar();
+    scrollBar->setValue(scrollBar->maximum());
+    //清空输入框
+    ui->tedtInputArea->clear();
+}
+void MainWidget::postMsgTo(int sender, const QByteArray &msg)
+{
+    for(auto item : this->chatListItems)
+    {
+        if(item->getId() == sender)
+        {
+            OtherSideMsg *otherMsg = new OtherSideMsg(this);
+            QByteArray message(msg);
+            int tail = message.size()-1;
+            while(message[tail] == '\n')
+                tail--;
+            message[tail+1] = '\0';
+            otherMsg->setText(message);
+            this->currentChatItem->msgListLayout->addWidget(otherMsg);
+            otherMsg->show();
+            //滑动条置底
+            QScrollBar *scrollBar = this->currentChatItem->scroMsgList->verticalScrollBar();
+            scrollBar->setValue(scrollBar->maximum());
+        }
+    }
 }

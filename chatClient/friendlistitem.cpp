@@ -1,7 +1,7 @@
 #include "friendlistitem.h"
 #include "ui_friendlistitem.h"
 
-FriendListItem::FriendListItem(QWidget *parent, int id) :
+FriendListItem::FriendListItem(int id, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::FriendListItem)
 {
@@ -11,6 +11,8 @@ FriendListItem::FriendListItem(QWidget *parent, int id) :
     setStyleSheet("QWidget{background-color:rgb(237,237,237);}");
     ui->lbUserName->setStyleSheet("QLabel{color:black}");
     ui->widget->installEventFilter(this);
+
+
 }
 
 FriendListItem::~FriendListItem()
@@ -47,6 +49,7 @@ bool FriendListItem::eventFilter(QObject *watched, QEvent *event)
         else if(event->type() == QMouseEvent::Leave || event->type() == QEvent::MouseButtonPress)
         {
             ui->widget->setStyleSheet("QWidget{background-color:rgb(237,237,237);}");
+            emit this->showUsrInfo(this->getId());
         }
 
     }

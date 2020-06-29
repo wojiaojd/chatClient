@@ -13,15 +13,15 @@ class FriendListItem : public QWidget
     Q_OBJECT
 
 public:
-    explicit FriendListItem(QWidget *parent = nullptr, int id = 0);
-    FriendListItem(int id, QWidget *parent = nullptr);
+    explicit FriendListItem(int id = 0, QWidget *parent = nullptr);
     ~FriendListItem();
     void setText(const QString &userName);
     void setPixmap(const QPixmap &headIcon);
     bool eventFilter(QObject *watched, QEvent *event);
     void setId(const int id);
     int getId();
-
+signals:
+    void showUsrInfo(int id);
 private:
     Ui::FriendListItem *ui;
     int id;

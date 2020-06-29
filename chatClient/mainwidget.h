@@ -6,11 +6,13 @@
 #include <QPoint>
 #include <QVBoxLayout>
 #include <QStackedLayout>
+#include <QLinkedList>
 
 #include "threadhandler.h"
 #include "friendlistitem.h"
 #include "chatlistitem.h"
 #include "sockhandler.h"
+#include "newfriend.h"
 
 namespace Ui {
 class mainWidget;
@@ -34,8 +36,14 @@ public:
     void setSockHandler(SockHandler *sockHandler);
 signals:
     void searchUser(QByteArray uid);
+    void preparedMsgThisSide(int recver, const QByteArray &msg);
 public slots:
     void postSearchedUsr(UsrInfo *info);
+    void handleNewFriendRequest(UsrInfo *info);
+    void handleNewFriendConfirm(UsrInfo *info);
+    void showUsrInfo(int id);
+    void sendMsgThisSide(int sender, const QByteArray &msg);
+    void postMsgTo(int sender, const QByteArray &msg);
 private:
     Ui::mainWidget *ui;
     QPoint oldMousePos;
@@ -47,10 +55,12 @@ private:
     QVBoxLayout *chatListLayout;
     //搜索新好友的列表布局
     QVBoxLayout *newFriendListLayout;
+    //新好友项队列
+    QLinkedList<NewFriend*> newFriendItems;
     //通讯录好友项目
     QVector<FriendListItem*> friendListItems;
     //聊天列表好友项目
-    QVector<ChatListItem*> chatListItems;
+    QLinkedList<ChatListItem*> chatListItems;
     //当前聊天好友项目
     ChatListItem *currentChatItem;
     //主窗口的套接字连接处理

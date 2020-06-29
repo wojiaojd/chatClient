@@ -20,13 +20,15 @@ public:
     bool eventFilter(QObject *watched, QEvent *event);
     int getId();
     void msgFormResize();
+    void setUsrName(const QString &usrName);
+    void setId(int id){this->id = id;}
+
     QScrollArea *scroMsgList;
     QVBoxLayout *msgListLayout;
     QWidget *wgtMsgList;
 
 private:
     Ui::ChatListItem *ui;
-
     int id;
 };
 

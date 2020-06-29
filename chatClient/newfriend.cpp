@@ -1,12 +1,26 @@
 #include "newfriend.h"
 #include "ui_newfriend.h"
 
-NewFriend::NewFriend(QWidget *parent) :
+NewFriend::NewFriend(NewFriendType type, QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::NewFriend)
+    dateTime(QDateTime::currentDateTime()),
+    ui(new Ui::NewFriend),
+    type(type)
 {
     ui->setupUi(this);
     ui->lbHeadIcon->setPixmap(QPixmap(":/icons/headIcon.png").scaled(ui->lbHeadIcon->size()));
+    //设置按钮文本
+    if(this->type == SEARCHED)
+    {
+        ui->btnAccept->setText("发送");
+        connect(ui->btnAccept, &QPushButton::clicked, [=](){emit this->requestNewFriend(this->info->getId());});
+    }
+    else if(this->type == REQUESTED)
+    {
+        ui->btnAccept->setText("接受");
+        connect(ui->btnAccept, &QPushButton::clicked, [=](){emit this->confirmNewFriend(this->info->getId());});
+    }
+
     ui->widget->setStyleSheet("QWidget{"
                               "background-color:rgb(233,233,233);"
                               "}"
@@ -18,7 +32,8 @@ NewFriend::NewFriend(QWidget *parent) :
     ui->widget->installEventFilter(this);
     ui->btnAccept->installEventFilter(this);
 
-    connect(ui->btnAccept, &QPushButton::clicked, [=](){emit this->requestNewFriend(this->info->getId());});
+
+
 //    connect(this, &NewFriend::requestNewFriend, this->sockHandler, &SockHandler::requestNewFriend);
 
 }
@@ -61,5 +76,12 @@ bool NewFriend::eventFilter(QObject *watched, QEvent *event)
 void NewFriend::setInfo(UsrInfo *info)
 {
     this->info = info;
-    ui->lbUserName->setText(this->info->getUsrName());
+    if(info->getUsrName() == "")
+    {
+        ui->lbUserName->setText(QByteArray::number(this->info->getId()));
+    }
+    else
+    {
+        ui->lbUserName->setText(this->info->getUsrName());
+    }
 }
